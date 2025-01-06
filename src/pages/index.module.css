@@ -1,0 +1,77 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  position: relative;
+  background: url('/static/img/tstack-home-banner.png') center center / 60% no-repeat;
+  background-color: #0186e0;
+  height: 50vh; /* Adjust height as needed */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+  padding-bottom: 40px; /* Adjust for spacing */
+  color: #fff; /* White text for contrast */
+}
+
+.heroContent {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.heroTitle {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  margin: 10px 0 0;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Features Section Styling */
+.features {
+  padding: 80px 0 50px; /* Add space at the top and adjust bottom space */
+}
+
+.featureRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.featureBlock {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  background: #f9f9f9; /* Light gray background */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.featureBlock h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.featureBlock p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
