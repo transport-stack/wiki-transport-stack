@@ -7,7 +7,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">Wiki TransportStack</h1>
+        <h1 className="hero__title">Wiki Transport Stack</h1>
         <p className="hero__subtitle">Your one-stop transit data hub</p>
         <div className={styles.buttons}>
           <a
