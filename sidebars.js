@@ -6,7 +6,8 @@ const sidebars = {
       label: 'Models',
       items: [
         'models/bus',
-        'models/metro',
+        'models/metro-tabular',
+        'models/data-exchange',
       ],
       collapsed: false,
     },

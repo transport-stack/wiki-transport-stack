@@ -61,7 +61,8 @@ const config = {
                     position: 'left',
                     items: [
                         {to: '/docs/models/bus', label: 'Bus'},
-                        {to: '/docs/models/metro', label: 'Metro'},
+                        {to: '/docs/models/metro-tabular', label: 'Metro'},
+                        {to: '/docs/models/data-exchange', label: 'Data Exchange'},
                     ],
                 },
                 {href: 'https://gitlab.com/dts3943729/wiki-transport-stack/', label: 'GitLab', position: 'right'},
