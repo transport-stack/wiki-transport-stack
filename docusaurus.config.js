@@ -65,6 +65,7 @@ const config = {
                     label: 'Data Models',
                     position: 'left',
                     items: [
+                        {to: '/docs/models/bus', label: 'Bus'},
                         {to: '/docs/models/metro-tabular', label: 'Metro'},
                         {to: '/docs/models/data-exchange', label: 'Data Exchange'},
                     ],
