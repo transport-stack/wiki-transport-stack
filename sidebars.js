@@ -3,11 +3,29 @@ const sidebars = {
   modelsSidebar: [
     {
       type: 'category',
-      label: 'Models',
+      label: 'Data Models',
       items: [
         'models/bus',
         'models/metro-tabular',
         'models/data-exchange',
+      ],
+      collapsed: false,
+    },
+  ],
+
+  useCasesSidebar: [
+    {
+      type: 'category',
+      label: 'Use Cases',
+      items: [
+        'use-cases/journey-planner',
+        'use-cases/eta-calculator',
+        'use-cases/park-and-ride',
+        'use-cases/bus-ticketing-open-platform',
+        'use-cases/bus-ticketing-ondc',
+        'use-cases/bus-auto-outshedding',
+        'use-cases/bus-schedule-adherence',
+        'use-cases/bus-bunching-detection',
       ],
       collapsed: false,
     },
@@ -23,9 +41,56 @@ const sidebars = {
     {
       type: 'doc',
       id: 'about-us',
-      label: 'About Us',
+      label: 'About Transport Stack',
+    },
+    {
+      type: 'doc',
+      id: 'delhi-transport-stack',
+      label: 'Delhi Transport Stack',
     },
   ],
+
+  // New sidebar configuration
+  // docsSidebar: [
+  //   {
+  //     type: 'doc',
+  //     id: 'intro',
+  //     label: 'Transport Stack Wiki',
+  //   },
+  //   {
+  //     type: 'doc',
+  //     id: 'about-us',
+  //     label: 'About Transport Stack',
+  //   },
+  //   // {
+  //   //   type: 'category',
+  //   //   label: 'Data Models',
+  //   //   items: [
+  //   //     'models/bus',
+  //   //     'models/metro-tabular',
+  //   //     'models/data-exchange',
+  //   //   ],
+  //   // },
+  //   // {
+  //   //   type: 'category',
+  //   //   label: 'Use Cases',
+  //   //   items: [
+  //   //     'use-cases/journey-planner',
+  //   //     'use-cases/eta-calculator',
+  //   //     'use-cases/park-and-ride',
+  //   //     'use-cases/bus-ticketing-open-platform',
+  //   //     'use-cases/bus-ticketing-ondc',
+  //   //     'use-cases/bus-auto-outshedding',
+  //   //     'use-cases/bus-schedule-adherence',
+  //   //     'use-cases/bus-bunching-detection',
+  //   //   ],
+  //   // },
+  //   // {
+  //   //   type: 'doc',
+  //   //   id: 'knowledge-hub',
+  //   //   label: 'Knowledge Hub',
+  //   // },
+  // ],
 };
 
 export default sidebars;

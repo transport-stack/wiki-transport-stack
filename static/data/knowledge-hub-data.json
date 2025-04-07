@@ -1,0 +1,164 @@
+[
+  {
+    "group": "Geographic Mapping and GIS Tool",
+    "name": "OpenStreetMap ",
+    "link": "https://www.openstreetmap.org/",
+    "github_link": "https://github.com/openstreetmap",
+    "description": "Open map database updated & maintained via open collaboration",
+    "category": "Geospatial Data Source",
+    "value": "To create detailed street network & transportation Infra map supporting real-time transport routing & navigations"
+  },
+  {
+    "group": "Geographic Mapping and GIS Tool",
+    "name": "Quantum Geographic Information System",
+    "link": "https://qgis.org/",
+    "github_link": "https://github.com/qgis/QGIS",
+    "description": "An open source software to create, edit, analyz, and visualize & publish geospatial data",
+    "category": "GIS Software",
+    "value": "To create custom maps of urban transportation infra, visualize traffic patterns, spatially analyse transportation traffic & generate heat map of mobility patterns"
+  },
+  {
+    "group": "Geographic Mapping and GIS Tool",
+    "name": "Leaflet",
+    "link": "https://leafletjs.com/",
+    "github_link": "https://github.com/Leaflet/Leaflet",
+    "description": "For creating interactive web maps",
+    "category": "GIS Software",
+    "value": "To create realtime transit tracking maps, developing route planning & navigation interfaces"
+  },
+  {
+    "group": "Geographic Mapping and GIS Tool",
+    "name": "GRASS GIS",
+    "link": "https://www.osgeo.org/projects/grass-gis/",
+    "github_link": "https://github.com/OSGeo/grass",
+    "description": "A geographic information system used for geospatial data management, image processing, graphics, spatial modeling, and visualization",
+    "category": "GIS Software",
+    "value": "Teraain analysis for transport infra, network assessment & routing, spatial staticts & modeling urban mobility patterns"
+  },
+  {
+    "group": "Geographic Mapping and GIS Tool",
+    "name": "DIVA-GIS",
+    "link": "http://diva-gis.org/",
+    "github_link": "",
+    "description": "For mapping & geographic data analysis",
+    "category": "GIS Software",
+    "value": "Supporting regional transportation planning, visualising demographic data & basic spatial analysis"
+  },
+  {
+    "group": "Geographic Mapping and GIS Tool",
+    "name": "Natual Earth",
+    "link": "https://www.naturalearthdata.com/",
+    "github_link": "https://github.com/nvkelso/natural-earth-vector",
+    "description": "Free vector & raster map dataat different scape sa country borders, rivers, physical features like mountains",
+    "category": "Dataset",
+    "value": "Regional transportation network visualization, continential mobility pattern\nDownload ready-made datasets (like countries and major rivers) and import them into a tool like QGIS to style or customize the map."
+  },
+  {
+    "group": "Geographic Mapping and GIS Tool",
+    "name": "Kepler.gl",
+    "link": "https://kepler.gl/",
+    "github_link": "https://github.com/keplergl/kepler.gl",
+    "description": "Powerful geospatial visualization tool",
+    "category": "Dataset",
+    "value": "Interactive mapping & visualization, Urban Mobility and Transport Analysis etc"
+  },
+  {
+    "group": "Transport Data and Analytics",
+    "name": "OpenMobilityData\nFormely known as transitfeed",
+    "link": "https://transitfeeds.com/",
+    "github_link": "OpenMobilityData Github",
+    "description": "Platform that aggregates and provides access to GTFS (General Transit Feed Specification) data from public transit agencies worldwide",
+    "category": "Dataset",
+    "value": "For Developing an application with transit schedule/map,  route planning support and real-time arrival updates across different transit agencies"
+  },
+  {
+    "group": "Transport Data and Analytics",
+    "name": "Transitland",
+    "link": "https://www.transit.land/",
+    "github_link": "https://github.com/transitland?ref=interline.io",
+    "description": "Collects and aggregates transit data from various providers around the world, making it accessible through open APIs for developers",
+    "category": "Platform",
+    "value": "For developing app that require transit data, create maps to show transit routes, map location, transit pattern, etc"
+  },
+  {
+    "group": "Traffic Simulation and Demand Modeling",
+    "name": "MATSim (Multi-Agent Transport Simulation Toolkit)",
+    "link": "https://matsim.org/",
+    "github_link": "https://github.com/matsim-org/matsim-libs",
+    "description": "Simulating agent based modules intended for use with transportation planning models",
+    "category": "Software",
+    "value": "To develop scenerio simulation for transport demand modeeling i.e.the movements of persons (\u0093agents\u0094) and vehicles on a given road and public transport network"
+  },
+  {
+    "group": "Traffic Simulation and Demand Modeling",
+    "name": "SUMO (Simulation of Urban Mobility)",
+    "link": "https://sumo.dlr.de/docs/index.html",
+    "github_link": "https://github.com/eclipse-sumo/sumo",
+    "description": "Open source traffic simulation package to model and analyze traffic flow and mobility in urban areas",
+    "category": "Software",
+    "value": "Develop microscopic traffic simulation, multi-modal network modeling & detailed vehicle interaction simulation"
+  },
+  {
+    "group": "Traffic Simulation and Demand Modeling",
+    "name": "OpenTraffic",
+    "link": "",
+    "github_link": "https://github.com/opentraffic",
+    "description": "Software and data platform for sharing and analyzing traffic statistics ",
+    "category": "Software",
+    "value": "Realtime traffic monitoring, Urban mobility data processing &  Open-source traffic analytics\n"
+  },
+  {
+    "group": "Traffic Simulation and Demand Modeling",
+    "name": "SimMobility",
+    "link": "https://github.com/smart-fm/simmobility-prod/blob/master/README.md",
+    "github_link": "https://github.com/smart-fm/simmobility-prod",
+    "description": "Integrated mobility simulation platform that comprehensively simulates Future Mobility scenarios by integrating long, medium, and short-term travel behavior",
+    "category": "Platform",
+    "value": " Mobility-sensitive behavioral models, the platform simulates the effects of a portfolio of technology, policy and investment options under alternative future scenario"
+  },
+  {
+    "group": "Shared Mobility and Micro-Mobility",
+    "name": "Open Mobility Foundation",
+    "link": "https://www.openmobilityfoundation.org/",
+    "github_link": "https://github.com/openmobilityfoundation",
+    "description": "Manages cities-wide transportation by building open-source data standards and software ",
+    "category": "Platform",
+    "value": "Developing shared mobility data standards, Facilitating inter-city transportation technology integration"
+  },
+  {
+    "group": "Shared Mobility and Micro-Mobility",
+    "name": "BRouter",
+    "link": "",
+    "github_link": "",
+    "description": "used for offline navigation, primarily known for its integration with OpenStreetMap data",
+    "category": "Software",
+    "value": "Open-source routing engine specialized for hiking, cycling, and outdoor routing"
+  },
+  {
+    "group": "Urban Transit Systems ",
+    "name": "Open Source Routing Machine (OSRM)",
+    "link": "https://project-osrm.org/",
+    "github_link": "https://github.com/Project-OSRM/osrm-backend",
+    "description": "Routing engine for road networks",
+    "category": "Routing Engine",
+    "value": "Fastest route calculation\nRoad network navigation\nLocation-based services\nTransportation planning"
+  },
+  {
+    "group": "Awesome Transit",
+    "name": "",
+    "link": "",
+    "github_link": "https://github.com/MobilityData/awesome-transit",
+    "description": "Open technology provides an opportunity for various stakeholders to collaborate efforts to improve public transit.\n\nElements of open technology include:\n\nOpen standards\nOpen data\nOpen source software (both as consumer-facing apps like OpenTripPlanner and developer tools like the GTFS Validator)",
+    "category": "Open Source Library",
+    "value": "Community list of data standards, APIs, apps, tools, datasets, and research around open source technology of public transit."
+  },
+  {
+    "group": "DRIVER - Data for Road Incident Visualization, Evaluation, and Reporting",
+    "name": "DRIVER ",
+    "link": "https://www.globalroadsafetyfacility.org/driver",
+    "github_link": "https://github.com/WorldBank-Transport/DRIVER",
+    "description": "",
+    "category": "Open source softwarre",
+    "value": ""
+  }
+]

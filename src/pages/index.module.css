@@ -5,73 +5,297 @@
 
 .heroBanner {
   position: relative;
-  background: url('/static/img/tstack-home-banner.png') center center / 60% no-repeat;
   background-color: #0186e0;
-  height: 50vh; /* Adjust height as needed */
+  min-height: 25vh;
+  padding: 4rem 0;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   text-align: center;
-  padding-bottom: 40px; /* Adjust for spacing */
-  color: #fff; /* White text for contrast */
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .heroBanner {
+    padding: 2rem 0;
+    min-height: 20vh;
+  }
 }
 
 .heroContent {
   text-align: center;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
-  padding: 20px;
-  border-radius: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .heroTitle {
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 1rem;
 }
 
-.heroSubtitle {
-  font-size: 1.5rem;
-  margin: 10px 0 0;
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+@media screen and (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
   }
 }
 
-.buttons {
+.features {
+  padding: 4rem 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: #2d6ca2;
+}
+
+@media screen and (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.userTypes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  padding: 0 1rem;
+}
+
+.userCard {
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.userCard strong {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.userCard p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.offeringCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.offeringCard {
+  text-align: center;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.offeringCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cardIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.offeringCard h3 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: #2d6ca2;
+}
+
+.offeringCard p {
+  margin: 0;
+  line-height: 1.5;
+  color: #666;
+}
+
+.successTitle {
+  margin-top: 4rem;
+}
+
+.successStories {
+  margin: 2rem 0;
+}
+
+.successStoryCard {
+  display: flex;
+  gap: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.successStoryCard:hover {
+  transform: translateY(-4px);
+}
+
+.storyIcon {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.storyContent {
+  flex: 1;
+}
+
+.storyContent h3 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.storyContent p {
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.readMore {
+  display: inline-block;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.readMore:hover {
+  color: var(--ifm-color-primary-darker);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .successStoryCard {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .storyIcon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+}
+
+.reportsRibbon {
+  margin-top: 4rem;
+  padding: 3rem 0;
+  background: var(--ifm-color-emphasis-100);
+}
+
+.reportsRibbon .container {
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  padding: 0 var(--ifm-spacing-horizontal);
+}
+
+.reportsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.reportCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.reportCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.reportIcon {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: 6px;
+  background: var(--ifm-color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Features Section Styling */
-.features {
-  padding: 80px 0 50px; /* Add space at the top and adjust bottom space */
-}
-
-.featureRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.featureBlock {
+.reportContent {
   flex: 1;
-  text-align: center;
-  padding: 20px;
-  background: #f9f9f9; /* Light gray background */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.featureBlock h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+.reportContent h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+  color: var(--ifm-color-primary);
 }
 
-.featureBlock p {
-  font-size: 1rem;
-  line-height: 1.5;
+.reportContent p {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.downloadLink {
+  display: inline-block;
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .reportsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .reportCard {
+    padding: 1.25rem;
+  }
 }

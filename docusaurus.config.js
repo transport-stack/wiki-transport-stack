@@ -9,14 +9,14 @@ dotenv.config();
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Wiki Transport Stack',
-    tagline: 'Your one-stop transit data hub',
+    tagline: 'Powering innovation and impact with Digital Public Infrastructure & Goods',
     favicon: 'img/favicon.png',
 
     // Set the production URL of your site
     url: process.env.SITE_URL || 'https://your-docusaurus-site.example.com',
     baseUrl: '/',
 
-    organizationName: 'transportstack', // GitHub org/user name
+    organizationName: 'transport-stack', // GitHub org/user name
     projectName: 'wiki.transportstack', // Repo name
 
     onBrokenLinks: 'throw',
@@ -33,11 +33,11 @@ const config = {
             {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://gitlab.com/dts3943729/wiki-transport-stack/-/blob/main/',
+                    editUrl: 'https://gitlab.com/transport-stack/wiki-transport-stack/-/blob/main/',
                 },
                 blog: {
                     showReadingTime: true,
-                    editUrl: 'https://gitlab.com/dts3943729/wiki-transport-stack/-/blob/main/',
+                    editUrl: 'https://gitlab.com/transport-stack/wiki-transport-stack/-/blob/main/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
@@ -55,42 +55,102 @@ const config = {
                 src: 'img/DTS_Option_Light.png',
             },
             items: [
-                {to: '/docs/about-us', label: 'About Us', position: 'left'},
                 {
-                    label: 'Models',
+                    to: '/docs/about-us',
+                    label: 'About Us',
+                    position: 'left'
+                },
+                {
+                    type: 'dropdown',
+                    label: 'Data Models',
                     position: 'left',
                     items: [
-                        {to: '/docs/models/bus', label: 'Bus'},
                         {to: '/docs/models/metro-tabular', label: 'Metro'},
                         {to: '/docs/models/data-exchange', label: 'Data Exchange'},
                     ],
                 },
-                {href: 'https://gitlab.com/dts3943729/wiki-transport-stack/', label: 'GitLab', position: 'right'},
+                {
+                    type: 'dropdown',
+                    label: 'Use Cases',
+                    position: 'left',
+                    items: [
+                        {
+                            label: 'Journey Planner',
+                            to: '/docs/use-cases/journey-planner',
+                        },
+                        {
+                            label: 'ETA Calculator',
+                            to: '/docs/use-cases/eta-calculator',
+                        },
+                        {
+                            label: 'Park & Ride',
+                            to: '/docs/use-cases/park-and-ride',
+                        },
+                        {
+                            label: 'Bus Ticketing - Open Platform',
+                            to: '/docs/use-cases/bus-ticketing-open-platform',
+                        },
+                        {
+                            label: 'Bus Ticketing - ONDC Seller',
+                            to: '/docs/use-cases/bus-ticketing-ondc',
+                        },
+                        {
+                            label: 'Bus - Auto Outshedding',
+                            to: '/docs/use-cases/bus-auto-outshedding',
+                        },
+                        {
+                            label: 'Bus - Schedule Adherence',
+                            to: '/docs/use-cases/bus-schedule-adherence',
+                        },
+                        {
+                            label: 'Bus - Bunching Detection',
+                            to: '/docs/use-cases/bus-bunching-detection',
+                        },
+                    ],
+                },
+                {to: '/docs/knowledge-hub', label: 'Knowledge Hub', position: 'left'},
+                {href: 'https://gitlab.com/transport-stack/wiki-transport-stack', label: 'GitLab', position: 'right'},
             ],
         },
         footer: {
             style: 'dark',
             links: [
                 {
-                    title: 'Docs',
+                    title: 'Links',
                     items: [
-                        {label: 'Models', to: '/docs/models/bus'},
+                        {
+                            label: 'About Us',
+                            to: '/docs/about-us',
+                        },
+                        {
+                            label: 'About TS WIKI',
+                            to: '/docs/intro',
+                        },
+                        {
+                            label: 'Contribute',
+                            href: 'https://gitlab.com/transport-stack/wiki-transport-stack',
+                        },
+                        {
+                            label: 'Feedback',
+                            href: 'https://delhi.transportstack.in/help-support',
+                        },
+                        {
+                            label: 'Contact Us',
+                            href: 'mailto:info@transportstack.in',
+                        },
                     ],
                 },
                 {
-                    title: 'Community',
+                    title: 'Legal',
                     items: [
-                        {label: 'GitLab', href: 'https://gitlab.com/dts3943729/wiki-transport-stack/'},
-                    ],
-                },
-                {
-                    title: 'More',
-                    items: [
-                        {label: 'About Us', to: '/docs/about-us'},
+                        {
+                            label: 'Policy Documents',
+                            href: 'https://delhi.transportstack.in/privacypolicy',
+                        },
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} Transport Stack. Built with Docusaurus.`,
+            copyright: `Copyright ${new Date().getFullYear()} Transport Stack. Built with Docusaurus.`,
         },
         prism: {
             theme: prismThemes.github,
