@@ -65,9 +65,12 @@ const config = {
                     label: 'Data Models',
                     position: 'left',
                     items: [
+                        {to: '/docs/models/otd', label: 'Open Transit Data (OTD)'},
                         {to: '/docs/models/bus', label: 'Bus'},
                         {to: '/docs/models/metro-tabular', label: 'Metro'},
                         {to: '/docs/models/data-exchange', label: 'Data Exchange'},
+                        {to: '/docs/models/accessibility', label: 'Accessibility'},
+                        {to: '/docs/models/shared-mobility', label: 'Shared Mobility'},
                     ],
                 },
                 {
@@ -106,7 +109,7 @@ const config = {
                         {
                             label: 'Bus - Bunching Detection',
                             to: '/docs/use-cases/bus-bunching-detection',
-                        },
+                        }
                     ],
                 },
                 {to: '/docs/knowledge-hub', label: 'Knowledge Hub', position: 'left'},

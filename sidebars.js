@@ -5,9 +5,19 @@ const sidebars = {
       type: 'category',
       label: 'Data Models',
       items: [
-        'models/bus',
-        'models/metro-tabular',
-        'models/data-exchange',
+        {
+          type: 'category',
+          label: 'Open Transit Data (OTD)',
+          items: [
+            { type: 'doc', id: 'models/otd', label: 'Overview' },
+            'models/bus',
+            'models/metro-tabular',
+            'models/data-exchange',
+            'models/accessibility',
+            'models/shared-mobility',
+          ],
+          collapsed: false,
+        },
       ],
       collapsed: false,
     },
@@ -93,4 +103,4 @@ const sidebars = {
   // ],
 };
 
-export default sidebars;
+module.exports = sidebars;
