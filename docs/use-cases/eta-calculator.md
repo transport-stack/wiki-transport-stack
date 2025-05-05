@@ -1,7 +1,10 @@
 # ETA Calculator
 
 
-![eta-calculator-design.png](../../static/img/eta-calculator-design.png)
+
+<p align="center">
+  <img src="/img/eta-calculator-design.png" alt="ETA Calculator Design" width="700" />
+</p>
 
 ## Why Provide ETA as a Service?
 
@@ -26,7 +29,10 @@ The ETA service combines static (scheduled) and real-time data to provide accura
 3. **Prediction Engine:** Use a plug-and-play algorithm or model to estimate arrival times at stops, for both individual vehicles and stops.
 4. **API Layer:** Expose ETAs via robust, scalable APIs for integration in apps, displays, and other systems.
 
-![eta-calculator-sys-arch.png](../../static/img/eta-calculator-sys-arch.png)
+
+<p align="center">
+  <img src="/img/eta-calculator-sys-arch.png" alt="ETA Calculator System Architecture" width="700" />
+</p>
 
 
 ## API Endpoints

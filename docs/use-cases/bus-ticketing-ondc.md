@@ -71,7 +71,7 @@ A typical user journey across ONDC buyer and seller apps could follow this struc
 5. Buyer app initiates payment
 6. Upon payment, seller backend issues the ticket and returns it to the app
 
-> _[Insert flow diagram of buyer-seller transaction — `/img/ondc-ticketing-flow.png`]_
+<!-- > _[Insert flow diagram of buyer-seller transaction — `/img/ondc-ticketing-flow.png`]_ -->
 
 ---
 
