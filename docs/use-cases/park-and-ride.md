@@ -1,5 +1,11 @@
 # Park-n-Ride
 
+## Introduction
+
+Park-n-Ride is a digital service that connects parking lots with public transportation systems, enabling commuters to park their vehicles near transit hubs and transfer to rail or bus services for longer commutes.  
+This service improves the commuting experience by offering last-mile connectivity options while reducing congestion and parking challenges.  
+By integrating parking facilities into transit systems, the service promotes public transport adoption and increases the utilization rate of parking spaces.
+
 ## Why Build a Park-n-Ride Service?
 
 Urban commuters often struggle with first-mile connectivity and limited parking near transit hubs. A Park-n-Ride system improves this by enabling commuters to:
@@ -9,180 +15,113 @@ Urban commuters often struggle with first-mile connectivity and limited parking 
 - **Increase public transport usage** by simplifying access to stations.
 - **Optimize infrastructure** by integrating digital tools with parking and transit data.
 
+## Core Functional Capabilities
+
+The Park & Ride system is designed to help users efficiently transition from private vehicles to public transport by offering location-aware, and convenience-focused features.
+
+### Search Results
+
+- Displays nearby parking options in proximity to metro or transit stations.
+- Provides:
+  - Availability of parking lots
+  - Distance from parking to nearest station
+  - Parking types and pricing information
+
+### Commute Integration View
+
+- Offers a visual guide from parking location to transit boarding point.
+- Helps users clearly understand how to transition from parking to public transport.
+
+### Parking Details Page
+
+- Lists availability based on vehicle type (e.g., two-wheeler, EV, standard car).
+- Shows detailed pricing structure.
+- Provides exact address and map coordinates.
+
+### Navigation
+
+- Enables smooth redirection to parking locations using native maps or in-app routing for real-time turn-by-turn directions.
+
+### Core Features
+
+- **Parking Availability**: Filterable by vehicle type (car, two-wheeler, bicycle).
+- **Probability Prediction**: Based on historical patterns for forecasting occupancy.
+
 ## System Overview
 
 The Park-n-Ride system digitally integrates parking facilities with public transport apps and platforms to enable seamless planning of journeys that begin with private vehicles and continue via public transit.
 
 ### Key Components
 
-- **Commuter App Integration:** Search for parking, view availability, and plan journeys including parking.
-- **Scalable Architecture:** Easily extensible to include more parking lots, live navigation, and reservation features.
+- **Commuter App Integration**: Search for parking, view availability, and plan journeys including parking.
+- **Scalable Architecture**: Easily extensible to include more parking lots, live navigation, and reservation features.
 
----
+## Data Management
 
-## Functional Requirements
+- **Static Parking Data**: Lot names, types (e.g., car, bike), location coordinates, capacities.
+- **Real-Time Parking Data**: Live slot availability through integration with smart parking systems.
+- **Historical Data**: Used for predicting future parking availability using trends and patterns.
 
-### 1. Data Management
+## Infrastructure
 
-- **Static Parking Data:** Lot names, types (e.g., car, bike), location coordinates, capacities.
-- **Real-Time Parking Data:** Live slot availability through integration with smart parking systems.
-- **Historical Data:** Used for predicting future parking availability using trends and patterns.
+- **Cloud Deployment**: Hosted on scalable platforms such as AWS.
+- **Containerization**: Uses Docker and Kubernetes (e.g., EKS) for flexibility and resilience.
+- **Auto-Scaling**: Dynamically scales based on system load and demand.
 
-### 2. User Interaction
+## Database Management
 
-- **Search Interface:** Users can find parking near transit hubs by name or location.
-- **Journey Planning Integration:** Combined results showing how to park and continue the commute using transit.
+- **Relational DBs**: For structured data like slot counts and locations (e.g., MySQL, PostgreSQL).
+- **Caching**: Redis or similar tools for real-time read-heavy queries.
 
-### 3. APIs & Integration
+## API Endpoints
+[[to be added]]
 
-- **Open APIs:** Provide data to third-party mobility platforms and transit apps.
-- **Data Standards:** Use standard formats such as GTFS and its extensions for compatibility.
+### API Development
 
-### 4. Monitoring and Analytics
+- **RESTful Architecture**: Standard endpoints for modular communication between services.
+- **High Availability**: Includes load balancing, rate-limiting, and retry mechanisms.
 
-- **Usage Analytics:** Monitor parking space utilization and app feature adoption.
-- **System Alerts:** Notifications for system failures, anomalies, or underperformance.
+## Performance & Security Considerations
 
----
+### Scalability
 
-## Technical Requirements
+- Support peak-hour demand through auto-scaling and optimized caching.
 
-### 1. Infrastructure
+### Reliability
 
-- **Cloud Deployment:** Hosted on scalable platforms such as AWS.
-- **Containerization:** Uses Docker and Kubernetes (e.g., EKS) for flexibility and resilience.
-- **Auto-Scaling:** Dynamically scales based on system load and demand.
+- Redundant infrastructure and failover mechanisms ensure high availability.
 
-### 2. Database Management
+### Efficiency
 
-- **Relational DBs:** For structured data like slot counts and locations (e.g., MySQL, PostgreSQL).
-- **Caching:** Redis or similar tools for real-time read-heavy queries.
+- Real-time APIs and queries are optimized for low latency and fast data access.
+- Parking availability updates are synced with minimal delay from smart systems.
 
-### 3. API Development
+### Security
 
-- **RESTful Architecture:** Standard endpoints for modular communication between services.
-- **High Availability:** Includes load balancing, rate-limiting, and retry mechanisms.
-
-### 4. Core Features
-
-- **Live Slot Availability:** Filterable by vehicle type (car, two-wheeler, bicycle).
-- **Probability Prediction:** Based on historical patterns for forecasting occupancy.
-- **Reservation Support:** Users may reserve slots as part of their trip.
-- **Data Dashboards:** Operators can view trends in usage and availability.
-
-### 5. Security
-
-- **Encrypted Transmission:** HTTPS, TLS for in-transit; AES or similar for at-rest.
-- **Role-Based Access:** Backend services secured with granular permissions.
-- **Compliance:** Aligns with data privacy frameworks (e.g., GDPR).
-
----
-
-## User Interface & UX Features
-
-### 1. Search Results
-
-- Parking facilities displayed alongside metro/transit stations.
-- Includes:
-  - Real-time slot count
-  - Distance to station
-  - Parking type and price info
-
-### 2. Commute Integration View
-
-- Visual flow showing parking → transit transfer journey.
-- Helps users understand where and how to park before boarding.
-
-### 3. Parking Details Page
-
-- Vehicle type-based availability
-- Pricing breakdown
-- Location (address + coordinates)
-- Amenity listing (e.g., EV charging, CCTV, security)
-
-### 4. Navigation
-
-- Seamless linking with native maps or in-app navigation to guide users to the parking location.
-
----
-
-## Performance Requirements
-
-### 1. Scalability
-
-- Designed to handle spikes during commute hours.
-- Caching and database optimization to ensure consistent performance.
-
-### 2. Reliability
-
-- Redundant servers and failover systems to ensure availability.
-- Auto-scaling keeps service responsive under high traffic.
-
-### 3. Efficiency
-
-- Optimized APIs and queries for low-latency real-time data.
-- Minimal lag between smart parking systems and displayed availability.
-
----
-
-## Security & Compliance
-
-### 1. Data Protection
-
-- All sensitive data is encrypted at rest and in transit.
-- Routine audits to ensure no leaks or unauthorized access.
-
-### 2. Authentication
-
-- Token-based user authentication for API and UI access.
-- Access control by user roles (e.g., admin, operator, viewer).
-
-### 3. Compliance
-
-- Follows data protection laws and frameworks like GDPR.
-- Retains only necessary user data, with proper consent mechanisms.
-
----
-
-## Monitoring and Maintenance
-
-### 1. System Monitoring
-
-- Tools like **ELK Stack**, **AWS CloudWatch** track:
-  - API health
-  - Latency and failure rates
-  - System uptime
-
-### 2. Auto-Scaling
-
-- Node-level scaling using Kubernetes (EKS) during high-demand periods.
-- Scales down during off-hours to conserve resources.
-
-### 3. Maintenance
-
-- Regular updates via CI/CD pipelines.
-- Scheduled patching and downtime notifications to users.
-- Logs and feedback loops help identify and resolve recurring issues.
-
----
+- All sensitive data is encrypted both at rest and during transmission.
+- Regular audits are conducted to detect and prevent unauthorized data access.
+- Access is secured via token-based authentication for both API and UI.
+- Role-based access control restricts system functions based on user roles.
+- Data handling complies with privacy regulations such as GDPR.
+- Only essential user data is retained, with clear and consent-based collection policies.
 
 ## Open Integration
 
 > _Park-n-Ride can integrate with broader Mobility-as-a-Service (MaaS) ecosystems, offering APIs to both government and private apps. Examples include smart city dashboards, multimodal planners, and transit operator platforms._
 
----
+## Planned Future Enhancements
 
-## Future Enhancements
+- Integration with **EV charging station networks**
+- Support for **dynamic pricing** based on demand and availability
+- **Gamified rewards** to encourage regular usage
+- **AI-driven forecasting** to predict parking demand patterns
 
-- Integration with **EV Charging Stations**
-- Support for **Dynamic Pricing Models**
-- **Gamified incentives** for users who use Park-n-Ride regularly
-- AI-powered **parking demand forecasting**
+## Open Source Repository
 
----
-
-## Contribution
-
-The source code and documentation for the Park-n-Ride system are available on GitLab:
-
+The source code and documentation for the Park-n-Ride system are available on GitLab:  
 [Park-n-Ride GitLab Repository](https://gitlab.com/transport-stack/park-and-ride)
+
+## References
+
+- [GTFS Specification](https://gtfs.org/)
+- [GFTS-RT](https://gtfs.org/realtime/)
