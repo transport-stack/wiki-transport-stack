@@ -48,6 +48,10 @@ A reliable Seller Backend must efficiently handle route discovery, trip planning
 - Send the revised ticket data back to the buyer application once updates are made.
 
 ## Buyer–Seller Interaction Flow
+<div style={{textAlign: 'center'}}>
+  <img src="/img/ondc-sys-arch.png" alt="ONDC System Architecture" />
+</div>
+
 
 A typical user journey across ONDC buyer and seller apps could follow this structure:
 
@@ -67,6 +71,10 @@ While implementations may vary, a typical deployment may include:
 - Local caching of stop/route data for performance
 - Real-time integration with payment and confirmation services
 - Stateless components deployed via container orchestration (e.g., Kubernetes)
+
+<div style={{textAlign: 'center'}}>
+  <img src="/img/ondc-seller-deployment.png" alt="ONDC Seller Deployment" />
+</div>
 
 ## Design Principles
 

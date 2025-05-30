@@ -97,10 +97,6 @@ const config = {
                             to: '/docs/use-cases/park-and-ride',
                         },
                         {
-                            label: 'Bus Ticketing - Open Platform',
-                            to: '/docs/use-cases/bus-ticketing-open-platform',
-                        },
-                        {
                             label: 'Bus Ticketing - ONDC Seller',
                             to: '/docs/use-cases/bus-ticketing-ondc',
                         },

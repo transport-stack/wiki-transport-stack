@@ -36,6 +36,8 @@ The following table outlines the key functional features supported across differ
 ## System Overview
 
 The service integrates multiple datasets, computes optimal journeys, and exposes results through scalable APIs.
+![Journey Planner System Architecture](../../static/img/jp-sys-arch.png)
+
 
 ### Data Layer
 
@@ -60,6 +62,10 @@ The service integrates multiple datasets, computes optimal journeys, and exposes
 
 - Uses a relational database with tightly coupled schema aligned with the routing engine.  
 - Precomputed results are indexed for fast lookup and API delivery.
+
+<p align="center">
+  <img src="/img/jp-data-flow.png" width="400" />
+</p>
 
 ## Journey Planner Algorithm
 

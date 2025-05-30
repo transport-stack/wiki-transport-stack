@@ -2,7 +2,12 @@
 
 ## Introduction
 
-The Open Transit Data (OTD) platform aggregates, processes, and disseminates a wide range of transport data, with a focus on Delhi's transit systems. It is designed as a foundational tool for urban planning, real-time traffic management, and commuter information services.
+The Open Transit Data (OTD) platform aggregates, processes, and disseminates a wide range of transport data, with a focus on metropolitan transit systems. It is designed as a foundational tool for urban planning, real-time traffic management, and commuter information services. 
+
+OTD enables seamless data flow from collection to consumption, supporting accuracy, speed, and security for large-scale metropolitan transit data. 
+
+- **Standard GTFS components** (Stops, Routes, Trips, Stop Times, Shapes, Fare Rules, Fare Attributes) 
+- **Additional datasets** such as OD (Origin-Destination) flow, operational schedules, accessibility, and shared mobility 
 
 ### Purpose
 OTD enables seamless data flow from collection to consumption, supporting accuracy, speed, and security for large-scale metropolitan transit data.
@@ -14,7 +19,9 @@ This document details the OTD platform's technical architecture, data processing
 
 ## System Architecture
 
-![OTD System Architecture](../../static/img/otd-sys-arch.png)
+<div style={{textAlign: 'center'}}>
+  <img src="/img/otd-sys-arch.png" alt="OTD System Architecture" />
+</div>
 
 **Figure:** OTD Framework - Static & Real-time Data Flow, API Layer, and Marketplace Integration
 

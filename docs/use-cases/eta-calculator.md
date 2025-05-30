@@ -41,6 +41,11 @@ The ETA Calculator provides accurate arrival time estimates by integrating vario
 The ETA service combines static (scheduled) and real-time data to provide accurate arrival predictions for buses at any stop.  
 The approach is adaptable for any city or region, and can be integrated with open data platforms, GTFS-RT feeds, and other sources.
 
+<div style={{textAlign: 'center'}}>
+  <img src="/img/eta-calculator-sys-arch.png" alt="ETA Calculator System Architecture" />
+</div>
+
+
 ### Data Inputs
 
 - **Static Data**: Schedules, routes, and historical travel times (ideally a year or more). Recent months are weighted more heavily to capture current patterns.
@@ -56,6 +61,9 @@ The approach is adaptable for any city or region, and can be integrated with ope
 ## ETA Algorithm
 
 The ETA algorithm is built on a hybrid approach combining historical patterns and real-time inputs to predict bus arrival times with high accuracy.
+<div style={{textAlign: 'center'}}>
+  <img src="/img/eta-calculator-design.png" alt="ETA Calculator Design" />
+</div>
 
 ### Step-by-Step Process:
 

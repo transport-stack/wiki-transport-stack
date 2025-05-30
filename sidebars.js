@@ -31,7 +31,6 @@ const sidebars = {
         'use-cases/journey-planner',
         'use-cases/eta-calculator',
         'use-cases/park-and-ride',
-        'use-cases/bus-ticketing-open-platform',
         'use-cases/bus-ticketing-ondc',
         'use-cases/bus-auto-outshedding',
         'use-cases/bus-schedule-adherence',
