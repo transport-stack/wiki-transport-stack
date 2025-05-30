@@ -1,121 +1,132 @@
+
 # Schedule Adherence
 
 ## Introduction
-Schedule adherence monitoring is a critical component of transit operations that measures how well vehicles adhere to their published schedules. This use case enables transit agencies to track and analyze schedule deviations in real-time, identify patterns of early or late arrivals/departures, and make data-driven decisions to improve service reliability. Benefits include improved passenger satisfaction through more predictable service, optimized resource allocation, and enhanced operational efficiency.
+
+Schedule adherence monitoring is a critical function for public transit operations. It measures how well buses follow their published timetables, identifying delays, early departures, and missed trips. The Schedule Adherence system provides real-time analysis and historical reporting to help agencies enhance reliability, passenger satisfaction, and service delivery.
+
+**Key Benefits:**
+- Improved punctuality through real-time tracking and alerts
+- Better planning with adherence analytics across routes and trips
+- Enhanced service delivery monitoring
+- Configurable thresholds per agency requirements
 
 ## Core Functional Capability
-- Real-time monitoring of vehicle positions relative to scheduled timetables
-- Calculation of schedule adherence metrics (early, on-time, late) at trip start and end points
-- Comparison of actual vs. scheduled route assignments to detect off-route operations
-- Trip completion tracking to measure service delivery
-- Generation of detailed adherence reports for operational analysis
-- Support for multiple transit agencies and vehicle types
+
+The Schedule Adherence module provides the following features:
+
+1. **Real-time Monitoring**
+   - Tracks vehicle positions against scheduled trip times using GTFS-Realtime and static GTFS feeds.
+
+2. **Adherence Metrics Calculation**
+   - Computes deviation from scheduled times at the start and end of trips.
+   - Classifies trips as **Early**, **On-Time**, or **Late** based on a configurable window (default: ±10 minutes).
+
+3. **Trip Completion Tracking**
+   - Monitors each vehicle's progression and calculates completion percentage for every scheduled trip.
+
+4. **Historical Logging**
+   - Stores schedule adherence data in a local database for later analysis.
+
+5. **Report Generation**
+   - Outputs structured JSON files for each evaluation cycle, suitable for integration into dashboards or analytics tools.
+
+6. **Multi-Agency and Multi-Route Support**
+   - Handles multiple transit agencies, routes, and vehicle types with dynamic configurations.
+
 
 ## System Design / Architecture
-The Schedule Adherence module follows a data processing pipeline architecture:
-1. **Data Collection Layer**: Ingests real-time GTFS vehicle positions and scheduled timetables
-2. **Processing Layer**: Matches vehicles to schedules, calculates adherence metrics
-3. **Storage Layer**: Persists processed data in SQLite database for historical analysis
-4. **Output Layer**: Generates JSON output for integration with other systems
 
-Key components include:
-- **app.py**: Main application entry point that handles data fetching and initial processing
-- **trip.py**: Core processing engine that calculates adherence metrics
-- **SQLite Database**: Stores processed GPS vs. schedule data
-- **Configuration Management**: Environment variables for API endpoints and settings
+The system is structured around a data processing pipeline that:
+- Fetches real-time position data
+- Matches it with schedule data
+- Applies time deviation logic
+- Outputs structured results to disk
 
-![Schedule Adherence Architecture](https://example.com/placeholder-for-architecture-diagram.png)
+import Mermaid from '@site/src/components/Mermaid';
+
+<Mermaid chart={`
+flowchart TD
+    A[GTFS-Realtime] --> B[Data Collection]
+    A2[GTFS Static Schedule] --> B
+    B --> C[Vehicle-Schedule Matching]
+    C --> D[Adherence Calculation]
+    D --> E[Output]
+`} />
 
 ## Algorithm
-The schedule adherence algorithm works as follows:
 
-1. **Data Collection**:
-   - Fetch real-time vehicle positions from GTFS-RT feed
-   - Load scheduled timetables from depot data
+The Schedule Adherence algorithm includes the following steps:
 
-2. **Vehicle-Schedule Matching**:
-   - For each vehicle, identify its assigned route and scheduled trip
-   - Match actual timestamps with scheduled timestamps based on minimum time difference
+1. **Data Collection**
+   - Real-time data is fetched from GTFS-Realtime feeds (vehicle positions, timestamps, route IDs).
+   - Schedule data is loaded from GTFS static files (trip start/end times, route mappings).
 
-3. **Adherence Calculation**:
-   - Calculate time difference between actual and scheduled timestamps
-   - Determine adherence status (early, on-time, late) based on configurable thresholds
-   - Track trip completion percentage based on vehicle progression through route
+2. **Vehicle-Schedule Matching**
+   - Vehicles are matched to scheduled trips based on route IDs and closest timestamp alignment.
+   - Only active trips are considered based on service calendar and time of day.
 
-4. **Trip Processing**:
-   - Group vehicle position updates into trips using temporal and spatial clustering
-   - Identify trip start and end points
-   - Calculate adherence at both endpoints
+3. **Trip Start/End Interpolation**
+   - Since GTFS-RT does not provide explicit trip start or end markers, the system **interpolates** these using ETA data.
+   - For terminals, we estimate the start and end time based on when a bus would have reached the first or last stop using its ETA.
 
-5. **Data Aggregation**:
-   - Combine actual and scheduled data
-   - Generate comprehensive adherence metrics for each trip
-   - Format output as structured JSON for downstream consumption
-<!-- 
-```
-function calculateAdherence(actualTime, scheduledTime):
-    timeDifference = actualTime - scheduledTime
-    if timeDifference < -THRESHOLD:
-        return "EARLY", abs(timeDifference)
-    else if timeDifference > THRESHOLD:
-        return "LATE", timeDifference
-    else:
-        return "ON_TIME", 0
-``` -->
+4. **Adherence Calculation**
+   - Time deviations are calculated for:
+     - Scheduled vs. actual trip start
+     - Scheduled vs. actual trip end
+   - Trips are labeled as:
+     - **Early**: >10 minutes before scheduled
+     - **Late**: >10 minutes after scheduled
+     - **On-Time**: Within ±10 minutes window
+   - These thresholds are **configurable** to suit each agency.
 
-<!-- ## API Events
-The module interacts with several external APIs:
+5. **Trip Completion Evaluation**
+   - Vehicle progress is calculated based on how many scheduled stops were reached.
+   - Completion percentage is derived and logged.
 
-1. **GTFS Realtime Feed** (GET):
-   - Purpose: Fetch real-time vehicle positions
-   - Data: Vehicle IDs, coordinates, timestamps, route IDs
-   - Example Response:
-     ```json
-     {
-       "entity": [
-         {
-           "id": "vehicle_1234",
-           "vehicle": {
-             "trip": { "route_id": "5476" },
-             "position": { "latitude": 28.6139, "longitude": 77.2090 },
-             "timestamp": 1621234567
-           }
-         }
-       ]
-     }
-     ```
+6. **Output Generation**
+   - Adherence summaries are saved as structured JSON.
+   - Each file contains trip-level metadata, timestamps, vehicle info, route ID, and adherence classification.
 
-2. **Depot Tool API** (GET):
-   - Purpose: Retrieve scheduled timetables
-   - Data: Vehicle assignments, scheduled trip times, route information
+## Input Data Requirements
 
-3. **Vehicle Agency API** (GET):
-   - Purpose: Get vehicle metadata
-   - Data: Vehicle IDs, agency information, depot assignments, vehicle features -->
+To ensure proper functioning of the logic, the following data inputs are expected:
 
-## Performance & Security Considerations
-**Performance**:
-- Optimized database queries with proper indexing
-- Efficient data processing with pandas for large datasets
-- Configurable time windows to limit data volume
-- Progress tracking with tqdm for long-running operations
-- Typical processing time: ~2-3 minutes for 1000 vehicles
+- **GTFS-Realtime Feed**:
+  - `vehicle_id`
+  - `route_id`
+  - `trip_id`
+  - `timestamp`
+  - `position` (latitude, longitude)
 
-**Security**:
-- All API endpoints stored in environment variables, not in code
-- Sensitive data excluded from version control via .gitignore
-- Timeout parameters on API requests to prevent hanging
-- Comprehensive error handling to prevent crashes
-- No personally identifiable information (PII) stored or processed
+- **GTFS Static Schedule**:
+  - `trip_id`
+  - `start_time`, `end_time`
+  - `stop_sequence`
+  - `route_id`
+
+- **Recommended Data Granularity**:
+  - GPS updates every 30 seconds or faster
+  - Timestamps in UTC or timezone-aligned
+  - ETA data accurate within 1-minute error margin
+
+## Output
+
+- Output is written to a JSON file at each evaluation cycle.
+- Each file contains:
+  - `trip_id`, `vehicle_id`, `route_id`
+  - `actual_start_time`, `scheduled_start_time`
+  - `actual_end_time`, `scheduled_end_time`
+  - `adherence_status` ("early", "on-time", "late")
+  - `completion_percent`
 
 ## Open-Source Repo
-The Schedule Adherence module is available as an open-source repository.
 
-Repository URL: [gitlab.com/transport-stack/schedule-adherence](https://gitlab.com/transport-stack/schedule-adherence)
+The system is available on GitLab:  
+🔗 [gitlab.com/transport-stack/schedule-adherence](https://gitlab.com/transport-stack/schedule-adherence)
 
 ## References
-- GTFS Realtime Specification: https://developers.google.com/transit/gtfs-realtime
-- Transit Schedule Adherence Best Practices (TCRP Report)
-- Python pandas documentation for data processing
-- SQLite documentation for database operations
-- Python-dotenv for environment variable management
+
+**Transit Standards**
+   - [GTFS-Realtime](https://developers.google.com/transit/gtfs-realtime)
+

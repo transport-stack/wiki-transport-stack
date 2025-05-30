@@ -34,10 +34,16 @@ const config = {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
                     editUrl: 'https://gitlab.com/transport-stack/wiki-transport-stack/-/blob/main/',
+                    remarkPlugins: [
+                        [require('mdx-mermaid'), {}],
+                    ],
                 },
                 blog: {
                     showReadingTime: true,
                     editUrl: 'https://gitlab.com/transport-stack/wiki-transport-stack/-/blob/main/',
+                    remarkPlugins: [
+                        [require('mdx-mermaid'), {}],
+                    ],
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),

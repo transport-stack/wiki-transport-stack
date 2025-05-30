@@ -27,21 +27,13 @@ The system provides the following core functionalities:
 6. **API Access**: Provides RESTful API endpoints for accessing recorded data
 7. **Web Interface**: Offers a user-friendly dashboard for viewing depot data in tabular format
 
-**Key Requirements**:
-
-- Real-time GPS data feed for all buses in the fleet
-- Accurate geofence definitions for all depot locations
-- Fleet information with bus-to-depot assignments
-- Reliable network connectivity for data collection
-- Sufficient storage for historical data
-
 ## System Design / Architecture
 
 The system follows a modular architecture with the following components:
 
 1. **Data Collection Module**:
    - Polls GPS data from configured APIs at regular intervals
-   - Processes and normalizes data from multiple sources (DTC, DIMTS)
+   - Processes and normalizes data from multiple sources
    - Handles connection failures and data inconsistencies
 
 2. **Geofencing Engine**:
@@ -105,11 +97,13 @@ The core algorithm for detecting outshedding and inshedding events involves:
      - **Outshedding**: When a bus moves from inside the depot to outside
      - **Inshedding**: When a bus moves from outside the depot to inside
 
-   - **Shift Classification**: Based on the time of day when the transition occurs:
-     - Morning shift outshedding: Typically between 4:00 AM and 12:00 PM
-     - Morning shift inshedding: Typically between 8:00 AM and 4:00 PM
-     - Evening shift outshedding: Typically between 4:00 PM and 12:00 AM
-     - Evening shift inshedding: Typically between 8:00 PM and 4:00 AM
+   - **Shift Classification**: Based on the time of day when the transition occurs.
+   
+      An example could be
+      - Morning shift outshedding: Typically between 4:00 AM and 12:00 PM
+      - Morning shift inshedding: Typically between 8:00 AM and 4:00 PM
+      - Evening shift outshedding: Typically between 4:00 PM and 12:00 AM
+      - Evening shift inshedding: Typically between 8:00 PM and 4:00 AM
 
    - **Hysteresis Implementation**: To prevent rapid toggling between states due to GPS inaccuracies at depot boundaries, the system implements a hysteresis buffer zone around depot perimeters.
 
@@ -122,11 +116,11 @@ The core algorithm for detecting outshedding and inshedding events involves:
    - At configurable intervals (typically hourly), save current state to disk
    - At end of day, finalize and save complete records
 
-<!-- **Complexity Analysis**:
+**Complexity Analysis**:
 - Time Complexity: O(n*m) where n is the number of buses and m is the number of points in the largest depot polygon
 - Space Complexity: O(n*k) where n is the number of buses and k is the number of GPS history points kept per bus -->
 
-<!-- ## API Events
+## API Events
 
 The system exposes the following API endpoints for data access:
 
@@ -156,12 +150,6 @@ The system exposes the following API endpoints for data access:
    - Returns distances traveled by buses on a specific date
    - Response: HTML table with bus numbers and distances
 
-**Data Flow**:
-1. Client requests data for a specific date, depot, and/or shift
-2. API server validates request parameters
-3. Server reads appropriate JSON file from data directory
-4. Server filters data based on request parameters
-5. Server formats and returns data to client
 
 ## Performance & Security Considerations
 
@@ -169,15 +157,11 @@ The system exposes the following API endpoints for data access:
 - GPS polling interval: 30-60 seconds (configurable)
 - Data processing latency: < 5 seconds
 - API response time: < 200ms for typical requests
-- Storage requirements: ~10MB per day for a fleet of 500 buses
-- Maximum concurrent API users: 50+
 
 **Performance Optimizations**:
 - Efficient polygon containment algorithms for geofencing
-- Limited GPS history retention (15 points per bus)
 - Asynchronous data persistence to avoid blocking the main processing loop
 - Data indexing by date, depot, and shift for fast retrieval
-- Caching of frequently accessed data
 
 **Security Measures**:
 - Input validation for all API parameters
@@ -185,13 +169,6 @@ The system exposes the following API endpoints for data access:
 - CORS configuration for web interface
 - Error handling to prevent information leakage
 - Sanitization of user inputs for HTML generation
-- Configurable API authentication (optional)
-
-**Scalability Considerations**:
-- Horizontal scaling through multiple instances for larger fleets
-- Database migration path for high-volume deployments
-- Configurable data retention policies
-- Support for distributed deployment across multiple regions -->
 
 ## Open-Source Repo
 
@@ -199,47 +176,15 @@ The Automated Bus Outshedding/Inshedding Monitoring system is available as an op
 
 **Repository**: [https://gitlab.com/transport-stack/buses-auto-outshedding](https://gitlab.com/transport-stack/buses-auto-outshedding)
 
-<!-- **Usage Instructions**:
-1. Clone the repository:
-   ```bash
-   git clone https://gitlab.com/transport-stack/buses-auto-outshedding.git
-   cd buses-auto-outshedding
-   ```
-
-2. Run the setup script:
-   ```bash
-   ./setup.sh
-   ```
-
-3. Configure the system by editing the `.env` file:
-   - Set API URLs for GPS data sources
-   - Configure depot information
-   - Set data directory path
-   - Adjust polling intervals if needed
-
-4. Run the system:
-   ```bash
-   # Run both tracker and API server
-   python run.py all
-   
-   # Or run components separately
-   python run.py tracker  # Run only the tracking system
-   python run.py api      # Run only the API server
-   ```
-
-5. Access the web interface:
-   - Open a browser and navigate to http://localhost:8000
-   - Use the date, depot, and shift selectors to view data -->
-
-<!-- **Customization Options**:
+**Customization Options**:
 - Add new depot polygons in `depots_data.py`
 - Modify polling intervals in `.env`
 - Customize the web interface in the `templates` directory
-- Extend API functionality in `main.py` -->
+- Extend API functionality in `main.py`
 
 ## References
-<!-- 
-**Supporting Documents**:
+
+<!-- **Supporting Documents**:
 - [Transit Stack Architecture Overview](https://transitstack.org/docs/architecture)
 - [GPS Data Format Specification](https://transitstack.org/docs/gps-format)
 - [Geofencing Best Practices](https://transitstack.org/docs/geofencing) -->
