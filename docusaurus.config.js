@@ -53,7 +53,7 @@ const config = {
     ],
 
     themeConfig: {
-        image: 'img/docusaurus-social-card.jpg',
+        image: 'img/ts-preview.png',
         navbar: {
             title: 'Transport Stack Wiki',
             logo: {
