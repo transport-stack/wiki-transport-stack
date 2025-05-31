@@ -162,6 +162,15 @@ const config = {
             theme: prismThemes.github,
             darkTheme: prismThemes.dracula,
         },
+        algolia: {
+          appId: 'O1J9RIKZA7',
+          apiKey: 'e6a227b2c05ffa4b689d3cb3614db73c',
+          indexName: 'staging-transportstack',
+          contextualSearch: true,
+          insights: true,
+          searchPagePath: 'search',
+          searchParameters: {},
+        },
         colorMode: {
             disableSwitch: true, // Disable the toggle switch
             defaultMode: 'light', // Set the default mode to light
