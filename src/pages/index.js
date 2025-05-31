@@ -42,13 +42,13 @@ function HomepageFeatures() {
     {
       title: 'Data Models',
       description: 'Structured frameworks for organising transportation data',
-      link: '/docs/models/bus',
+      link: '/docs/models/otd',
       icon: '/img/icons/data-model.png'
     },
     {
       title: 'Use Cases',
       description: 'Set of solutions designed to enhance urban mobility',
-      link: '/docs/intro',
+      link: '/docs/use-cases/journey-planner',
       icon: '/img/icons/use-cases.png'
     },
     {
