@@ -74,7 +74,42 @@ The Park-n-Ride system digitally integrates parking facilities with public trans
 - **Caching**: Redis or similar tools for real-time read-heavy queries.
 
 ## API Endpoints
-[[to be added]]
+
+- **API Gateway**: Handles request management, security, rate limiting, and analytics.  
+- **Public APIs**:  
+  - `/api/get_parking_lots?<args>`  
+  - `/api/<version>/get_park_and_ride_journey/?<args>`
+
+### 1. Get Parking Lots
+
+- **Endpoint**: `/api/get_parking_lots?<args>`  
+- **Method**: GET  
+- **Arguments**:  
+  - `near_station`: ID or coordinates of transit station  
+  - `vehicle_type`: `car`, `two-wheeler`, `bicycle`, `ev`  
+- **Example**:  
+  `/api/get_parking_lots?near_station=metro123&vehicle_type=car`
+
+### 2. Get Park and Ride Journey
+
+- **Endpoint**: `/api/<version>/get_park_and_ride_journey/?<args>`  
+- **Method**: GET  
+- **Required Arguments**:  
+  - `src_type`, `src`, `dst_type`, `dest`, `vehicle_type`, `transit_mode`  
+- **Optional Arguments**:  
+  - `time`, `src_name`, `dst_name`, `max_parking_distance`  
+- **Example**:  
+  `/api/v2/get_park_and_ride_journey/?src=[28.7041,77.1025]&src_type=place&dst=28.7041,77.1025&dst_type=place&vehicle_type=car&transit_mode=metro&max_parking_distance=500`
+
+### 3. Get Parking Availability
+
+- **Endpoint**: `/api/get_parking_availability?<args>`  
+- **Method**: GET  
+- **Arguments**:  
+  - `lot_id`: ID of the parking lot  
+  - `vehicle_type`: `car`, `two-wheeler`, `bicycle`, `ev` (optional)  
+- **Example**:  
+  `/api/get_parking_availability?lot_id=park123&vehicle_type=car`
 
 ### API Development
 
