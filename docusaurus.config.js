@@ -163,8 +163,8 @@ const config = {
             darkTheme: prismThemes.dracula,
         },
         algolia: {
-          appId: 'O1J9RIKZA7',
-          apiKey: 'e6a227b2c05ffa4b689d3cb3614db73c',
+          appId: 'H2L7RGWE3C',
+          apiKey: '40d420af18af5bcfbc5d3b3d8c01b79f',
           indexName: 'transportstack',
           contextualSearch: true,
           insights: true,
