@@ -77,39 +77,28 @@ The Park-n-Ride system digitally integrates parking facilities with public trans
 
 - **API Gateway**: Handles request management, security, rate limiting, and analytics.  
 - **Public APIs**:  
-  - `/api/get_parking_lots?<args>`  
-  - `/api/<version>/get_park_and_ride_journey/?<args>`
+  - `/api/get_stops?mode=<bus|metro|multi-modal>`  
+  - `/api/<version>/get_multi_modal/?<args>`
 
-### 1. Get Parking Lots
+### 1. Get Stops
 
-- **Endpoint**: `/api/get_parking_lots?<args>`  
+- **Endpoint**: `/api/get_stops?<args>`  
 - **Method**: GET  
 - **Arguments**:  
-  - `near_station`: ID or coordinates of transit station  
-  - `vehicle_type`: `car`, `two-wheeler`, `bicycle`, `ev`  
+  - `mode`: `bus`, `metro`, or `multi-modal`  
 - **Example**:  
-  `/api/get_parking_lots?near_station=metro123&vehicle_type=car`
+  `/api/get_stops?mode=bus`
 
-### 2. Get Park and Ride Journey
+### 2. Get Multi-Modal Journey
 
-- **Endpoint**: `/api/<version>/get_park_and_ride_journey/?<args>`  
+- **Endpoint**: `/api/<version>/get_multi_modal/?<args>`  
 - **Method**: GET  
 - **Required Arguments**:  
-  - `src_type`, `src`, `dst_type`, `dest`, `vehicle_type`, `transit_mode`  
+  - `src_type`, `src`, `dst_type`, `dest`, `mode`  
 - **Optional Arguments**:  
-  - `time`, `src_name`, `dst_name`, `max_parking_distance`  
+  - `time`, `src_name`, `dst_name`  
 - **Example**:  
-  `/api/v2/get_park_and_ride_journey/?src=[28.7041,77.1025]&src_type=place&dst=28.7041,77.1025&dst_type=place&vehicle_type=car&transit_mode=metro&max_parking_distance=500`
-
-### 3. Get Parking Availability
-
-- **Endpoint**: `/api/get_parking_availability?<args>`  
-- **Method**: GET  
-- **Arguments**:  
-  - `lot_id`: ID of the parking lot  
-  - `vehicle_type`: `car`, `two-wheeler`, `bicycle`, `ev` (optional)  
-- **Example**:  
-  `/api/get_parking_availability?lot_id=park123&vehicle_type=car`
+  `/api/v2/get_multi_modal/?src=[28.7041,77.1025]&src_type=place&dst=28.7041,77.1025&dst_type=place&mode=bus`
 
 ### API Development
 
