@@ -165,7 +165,7 @@ const config = {
         algolia: {
           appId: 'O1J9RIKZA7',
           apiKey: 'e6a227b2c05ffa4b689d3cb3614db73c',
-          indexName: 'staging-transportstack',
+          indexName: 'transportstack',
           contextualSearch: true,
           insights: true,
           searchPagePath: 'search',
