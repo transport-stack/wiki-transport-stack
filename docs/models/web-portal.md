@@ -12,7 +12,7 @@
 
 ## The Web Portal: A Gateway to the Open Transit Ecosystem
 
-The Web Portal is the central gateway to the entire Open Transit Data (OTD) ecosystem. It serves as the primary interface for all users—from the public to developers and transit administrators—to discover, access, and interact with the rich datasets provided by the platform. Its core purpose is to make transit data accessible, usable, and actionable.
+The Web Portal is the central gateway to the entire Open Transit Data (OTD) ecosystem. It serves as the primary interface for all users - from the public to developers and transit administrators - to discover, access, and interact with the rich datasets provided by the platform. Its core purpose is to make transit data accessible, usable, and actionable.
 
 ### Key Roles and Features by User Type
 
