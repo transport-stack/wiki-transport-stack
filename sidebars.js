@@ -15,6 +15,7 @@ const sidebars = {
             'models/data-exchange',
             'models/accessibility',
             'models/shared-mobility',
+            { type: 'doc', id: 'models/web-portal', label: 'Web Portal' },
           ],
           collapsed: false,
         },
