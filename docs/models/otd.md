@@ -1,6 +1,6 @@
 ---
-title: Overview
-sidebar_label: Overview
+title: Open Transit Data (OTD)
+sidebar_label: Introduction
 ---
 
 # Open Transit Data (OTD)

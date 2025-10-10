@@ -9,10 +9,18 @@ const sidebars = {
           type: 'category',
           label: 'Open Transit Data (OTD)',
           items: [
-            { type: 'doc', id: 'models/otd', label: 'Overview' },
+            {
+              type: 'category',
+              label: 'Overview',
+              items: [
+                { type: 'doc', id: 'models/otd', label: 'Introduction' },
+                { type: 'doc', id: 'models/data-exchange', label: 'Data Exchange' },
+              ],
+              collapsed: false,
+            },
+            { type: 'doc', id: 'models/web-portal', label: 'Web Portal' },
             'models/bus',
             'models/metro-tabular',
-            'models/data-exchange',
             'models/accessibility',
             'models/shared-mobility',
           ],
