@@ -113,8 +113,8 @@ Technologies such as Redis caching, Kubernetes (e.g., AWS EKS), and load balanci
 
 ## Open Source Repository
 
-The source code and documentation for the ONDC system are available on GitLab:
+The source code and documentation for the ONDC system are available on GitHub:
 
 [ONDC Mobility Reference Implementation](https://www.ondc.org/)
 
-Gitlab repository: [Bus Ticketing Seller Backend](https://github.com/transport-stack/ondc-buses-seller)
+GitHub repository: [Bus Ticketing Seller Backend](https://github.com/transport-stack/ondc-buses-seller)

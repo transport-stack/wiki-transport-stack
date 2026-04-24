@@ -122,7 +122,7 @@ To ensure proper functioning of the logic, the following data inputs are expecte
 
 ## Open-Source Repo
 
-The system is available on GitLab:  
+The system is available on GitHub:  
 🔗 [github.com/transport-stack/schedule-adherence](https://github.com/transport-stack/schedule-adherence)
 
 ## References

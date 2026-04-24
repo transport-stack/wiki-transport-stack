@@ -129,7 +129,7 @@ While this module does not include native map rendering, the output JSON and CSV
 
 ## Open-Source Repo
 
-The system is available on GitLab:  
+The system is available on GitHub:  
 🔗 [github.com/transport-stack/bus-bunching-detection](https://github.com/transport-stack/bus-bunching-detection)
 
 ## References

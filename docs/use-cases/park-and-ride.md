@@ -142,8 +142,8 @@ The Park-n-Ride system digitally integrates parking facilities with public trans
 
 ## Open Source Repository
 
-The source code and documentation for the Park-n-Ride system are available on GitLab:  
-[Park-n-Ride GitLab Repository](https://github.com/transport-stack/park-n-ride-trip-planner)
+The source code and documentation for the Park-n-Ride system are available on GitHub:  
+[Park-n-Ride GitHub Repository](https://github.com/transport-stack/park-n-ride-trip-planner)
 
 ## References
 
