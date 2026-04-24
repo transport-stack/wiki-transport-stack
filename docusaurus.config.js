@@ -33,14 +33,14 @@ const config = {
             {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://gitlab.com/transport-stack/wiki-transport-stack/-/blob/main/',
+                    editUrl: 'https://github.com/transport-stack/wiki-transport-stack/blob/main/',
                     remarkPlugins: [
                         [require('mdx-mermaid'), {}],
                     ],
                 },
                 blog: {
                     showReadingTime: true,
-                    editUrl: 'https://gitlab.com/transport-stack/wiki-transport-stack/-/blob/main/',
+                    editUrl: 'https://github.com/transport-stack/wiki-transport-stack/blob/main/',
                     remarkPlugins: [
                         [require('mdx-mermaid'), {}],
                     ],
@@ -115,7 +115,7 @@ const config = {
                     ],
                 },
                 {to: '/docs/knowledge-hub', label: 'Knowledge Hub', position: 'left'},
-                {href: 'https://gitlab.com/transport-stack/wiki-transport-stack', label: 'GitLab', position: 'right'},
+                {href: 'https://github.com/transport-stack/wiki-transport-stack', label: 'GitHub', position: 'right'},
             ],
         },
         footer: {
@@ -134,7 +134,7 @@ const config = {
                         },
                         {
                             label: 'Contribute',
-                            href: 'https://gitlab.com/transport-stack/wiki-transport-stack',
+                            href: 'https://github.com/transport-stack/wiki-transport-stack',
                         },
                         {
                             label: 'Feedback',

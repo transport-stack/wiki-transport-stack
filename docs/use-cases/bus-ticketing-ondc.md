@@ -117,4 +117,4 @@ The source code and documentation for the ONDC system are available on GitLab:
 
 [ONDC Mobility Reference Implementation](https://www.ondc.org/)
 
-Gitlab repository: [Bus Ticketing Seller Backend](https://gitlab.com/transport-stack/ondc-buses-seller)
+Gitlab repository: [Bus Ticketing Seller Backend](https://github.com/transport-stack/ondc-buses-seller)

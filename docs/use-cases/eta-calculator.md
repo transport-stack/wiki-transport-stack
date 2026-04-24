@@ -190,7 +190,7 @@ The ETA algorithm is built on a hybrid approach combining historical patterns an
 ## Open Source Repository
 
 The source code and API documentation for the ETA Calculator are available on GitLab:  
-[ETA Calculator GitLab Repository](https://gitlab.com/transport-stack/eta-calculator)
+[ETA Calculator GitLab Repository](https://github.com/transport-stack/eta-calculator)
 
 ## References
 

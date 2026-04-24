@@ -174,7 +174,7 @@ The system exposes the following API endpoints for data access:
 
 The Automated Bus Outshedding/Inshedding Monitoring system is available as an open-source project:
 
-**Repository**: [https://gitlab.com/transport-stack/buses-auto-outshedding](https://gitlab.com/transport-stack/buses-auto-outshedding)
+**Repository**: [https://github.com/transport-stack/buses-auto-outshedding](https://github.com/transport-stack/buses-auto-outshedding)
 
 **Customization Options**:
 - Add new depot polygons in `depots_data.py`

@@ -38,7 +38,7 @@ The system is engineered to facilitate seamless data flow from collection to con
 
 The source code and API documentation for OTD are available on GitLab:
 
-[Open Transit Data Service APIs GitLab Repository](https://gitlab.com/transport-stack/open-transit-data-service-apis)
+[Open Transit Data Service APIs GitLab Repository](https://github.com/transport-stack/open-transit-data-service-apis)
 
 ---
 

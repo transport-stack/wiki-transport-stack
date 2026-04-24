@@ -50,12 +50,10 @@ The Knowledge Hub is a central repository within the Transport Stack ecosystem, 
 
 ### 4. Open-Source Community 
 
-Open source GitLab community powering the future of urban mobility. The GitLab community aims to bring together developers, urban planners, researchers, individual enthusiasts, everyone else to co-create tools for transit, logistics, and smart mobility. With open standards and collaboration at its core, we aim to make transportation systems more transparent, adaptable, and equitable. Join us to shape mobility that works for everyone. 
-
- 
+An open-source GitHub community powering the future of urban mobility. The Transport Stack community aims to bring together developers, urban planners, researchers, individual enthusiasts, and everyone else to co-create tools for transit, logistics, and smart mobility. With open standards and collaboration at its core, we aim to make transportation systems more transparent, adaptable, and equitable. Join us to shape mobility that works for everyone.
 
 #### *Join the Ecosystem*
 
-As an open-source initiative, Transport Stack invites collaboration across the mobility ecosystem. Whether you're a developer, urban planner, government agency, or transport operator—you can play a role in shaping the future of urban transport. 
+As an open-source initiative, Transport Stack invites collaboration across the mobility ecosystem. Whether you're a developer, urban planner, government agency, or transport operator—you can play a role in shaping the future of urban transport.
 
- [📂 Explore the Code on GitLab](https://gitlab.com/transport-stack)
+[📂 Explore the Code on GitHub](https://github.com/transport-stack)

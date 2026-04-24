@@ -165,7 +165,7 @@ The platform is built to handle high-demand environments while ensuring robust p
 ## Open Source Repository
 
 The source code and API documentation for the Journey Planner are available on GitLab:  
-[Journey Planner GitLab Repository](https://gitlab.com/transport-stack/journey-planner)
+[Journey Planner GitLab Repository](https://github.com/transport-stack/journey-planner)
 
 ## References
 
