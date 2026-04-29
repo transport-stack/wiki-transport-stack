@@ -65,6 +65,15 @@ const sidebars = {
       id: 'delhi-transport-stack',
       label: 'Delhi Transport Stack',
     },
+    // {
+    //   type: 'category',
+    //   label: 'Architecture',
+    //   items: [
+    //     { type: 'doc', id: 'architecture/overview', label: 'Platform Overview' },
+    //     { type: 'doc', id: 'architecture/tech-stack', label: 'Technology Stack' },
+    //   ],
+    //   collapsed: false,
+    // },
   ],
 
   // New sidebar configuration
