@@ -9,7 +9,7 @@ Every tool and framework used across the Transport Stack ecosystem, organized by
 
 > **Legend:** ✅ Production &nbsp;|&nbsp; 🔬 Evaluation &nbsp;|&nbsp; 📝 Planned
 >
-> **License Note:** All repositories currently lack an explicit `LICENSE` file. The org-level `.github` repo specifies Apache 2.0 in `CONTRIBUTING.md`. License files need to be added to each repository.
+> **License Note:** The licenses below are for the **third-party tools** Transport Stack depends on (Django, React, Redis, etc.). The Transport Stack project code itself is licensed under **Apache 2.0** — see the `LICENSE` file in each repository.
 
 ---
 
