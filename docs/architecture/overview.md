@@ -26,34 +26,34 @@ sidebar_label: Platform Overview
 ## System Context
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#fff3e0', 'tertiaryColor': '#e8f5e9', 'fontFamily': 'Inter, sans-serif', 'fontSize': '14px' }}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#fff3e0', 'tertiaryColor': '#e8f5e9', 'fontFamily': 'Inter, sans-serif', 'fontSize': '17px' }}}%%
 graph TB
     classDef actor fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b,rx:20px,ry:20px
     classDef module fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:8px,ry:8px
     classDef external fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#e65100,rx:8px,ry:8px
     classDef data fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#880e4f,shape:cylinder
 
-    C["👤 Commuter / End User"]:::actor
-    PTO["🏢 Transit Operator"]:::actor
-    ADMIN["⚙️ City Admin"]:::actor
-    DEV["💻 Developer / Partner"]:::actor
+    C["Commuter / End User"]:::actor
+    PTO["Transit Operator"]:::actor
+    ADMIN["City Admin"]:::actor
+    DEV["Developer / Partner"]:::actor
 
     subgraph "Transport Stack"
         style Transport Stack fill:#f8f9fa,stroke:#78909c,stroke-width:2px,stroke-dasharray: 5 5
-        OTD["📡 Open Transit Data APIs"]:::data
-        ETA["⏱️ ETA Calculator"]:::module
-        JP["🗺️ Journey Planner"]:::module
-        SA["📊 Schedule Adherence"]:::module
-        BUN["🚌 Bunching Detection"]:::module
-        AOS["🏭 Auto Outshedding"]:::module
-        PR["🅿️ Park & Ride"]:::module
-        ONDC_S["🎫 ONDC Bus Seller"]:::module
-        ONDC_M["🚲 ONDC Micro-Mobility"]:::module
-        PORTAL["🌐 Web Portal"]:::module
-        COLLECT["📱 Data Collection App"]:::module
+        OTD["Open Transit Data APIs"]:::data
+        ETA["ETA Calculator"]:::module
+        JP["Journey Planner"]:::module
+        SA["Schedule Adherence"]:::module
+        BUN["Bunching Detection"]:::module
+        AOS["Auto Outshedding"]:::module
+        PR["Park & Ride"]:::module
+        ONDC_S["ONDC Bus Seller"]:::module
+        ONDC_M["ONDC Micro-Mobility"]:::module
+        PORTAL["Web Portal"]:::module
+        COLLECT["Data Collection App"]:::module
     end
 
-    ONDC_NET["🔗 ONDC Network"]:::external
+    ONDC_NET["ONDC Network"]:::external
 
     PTO --"GTFS / GTFS-RT"--> OTD
     OTD --> ETA
@@ -87,7 +87,7 @@ graph TB
 ## Functional Architecture
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#bbdefb', 'primaryTextColor': '#0d47a1', 'primaryBorderColor': '#1976d2', 'lineColor': '#78909c', 'secondaryColor': '#c8e6c9', 'tertiaryColor': '#ffe0b2', 'quaternaryColor': '#e1bee7', 'fontFamily': 'Inter, sans-serif', 'fontSize': '13px' }}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#bbdefb', 'primaryTextColor': '#0d47a1', 'primaryBorderColor': '#1976d2', 'lineColor': '#78909c', 'secondaryColor': '#c8e6c9', 'tertiaryColor': '#ffe0b2', 'quaternaryColor': '#e1bee7', 'fontFamily': 'Inter, sans-serif', 'fontSize': '17px' }}}%%
 graph LR
     classDef data fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#0d47a1,rx:8px,ry:8px
     classDef analytics fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:8px,ry:8px
@@ -98,37 +98,37 @@ graph LR
     classDef external fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#e65100,rx:8px,ry:8px
 
     subgraph "Data Layer"
-        OTD["📡 Open Transit Data APIs"]:::data
-        GTFS["📥 GTFS Ingestion"]:::data
+        OTD["Open Transit Data APIs"]:::data
+        GTFS["GTFS Ingestion"]:::data
     end
 
     subgraph "Analytics Layer"
-        ETA["⏱️ ETA Calculator"]:::analytics
-        SA["📊 Schedule Adherence"]:::analytics
-        BB["🚌 Bunching Detection"]:::analytics
-        AO["🏭 Auto Outshedding"]:::analytics
+        ETA["ETA Calculator"]:::analytics
+        SA["Schedule Adherence"]:::analytics
+        BB["Bunching Detection"]:::analytics
+        AO["Auto Outshedding"]:::analytics
     end
 
     subgraph "Planning Layer"
-        JP["🗺️ Journey Planner"]:::planning
-        PNR["🅿️ Park & Ride"]:::planning
+        JP["Journey Planner"]:::planning
+        PNR["Park & Ride"]:::planning
     end
 
     subgraph "Commerce Layer"
-        ONDC_S["🎫 ONDC Bus Seller"]:::commerce
-        ONDC_B["🚲 ONDC Micro-Mobility"]:::commerce
+        ONDC_S["ONDC Bus Seller"]:::commerce
+        ONDC_B["ONDC Micro-Mobility"]:::commerce
     end
 
     subgraph "Presentation Layer"
-        PORTAL_FE["🌐 Web Portal Frontend"]:::presentation
-        PORTAL_BE["🔌 Web Portal Backend"]:::presentation
+        PORTAL_FE["Web Portal Frontend"]:::presentation
+        PORTAL_BE["Web Portal Backend"]:::presentation
     end
 
     subgraph "Data Collection"
-        DC["📱 Data Collection App"]:::collection
+        DC["Data Collection App"]:::collection
     end
 
-    ONDC_NET["🔗 ONDC Network"]:::external
+    ONDC_NET["ONDC Network"]:::external
 
     GTFS --> OTD
     OTD --> ETA
@@ -167,14 +167,14 @@ graph LR
 ## Data Flow Between Modules
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#e8f5e9', 'tertiaryColor': '#fff3e0', 'fontFamily': 'Inter, sans-serif', 'fontSize': '14px' }}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#e8f5e9', 'tertiaryColor': '#fff3e0', 'fontFamily': 'Inter, sans-serif', 'fontSize': '18px' }}}%%
 sequenceDiagram
     autonumber
-    actor PTO as 🏢 Transit Operator
-    participant OTD as 📡 Open Transit Data
-    participant ETA as ⏱️ ETA Calculator
-    participant JP as 🗺️ Journey Planner
-    actor C as 👤 Commuter
+    actor PTO as Transit Operator
+    participant OTD as Open Transit Data
+    participant ETA as ETA Calculator
+    participant JP as Journey Planner
+    actor C as Commuter
 
     rect rgb(225, 245, 254)
         Note over PTO,OTD: Data Ingestion Phase
@@ -216,7 +216,7 @@ sequenceDiagram
 ## Deployment View
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f5e9', 'primaryTextColor': '#1b5e20', 'primaryBorderColor': '#2e7d32', 'lineColor': '#78909c', 'secondaryColor': '#e1f5fe', 'tertiaryColor': '#fff3e0', 'fontFamily': 'Inter, sans-serif', 'fontSize': '13px' }}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f5e9', 'primaryTextColor': '#1b5e20', 'primaryBorderColor': '#2e7d32', 'lineColor': '#78909c', 'secondaryColor': '#e1f5fe', 'tertiaryColor': '#fff3e0', 'fontFamily': 'Inter, sans-serif', 'fontSize': '17px' }}}%%
 graph TB
     classDef lb fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,color:#e65100,rx:20px,ry:20px
     classDef app fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b,rx:8px,ry:8px
@@ -226,36 +226,36 @@ graph TB
     classDef cdn fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#4a148c
     classDef external fill:#fafafa,stroke:#78909c,stroke-width:2px,color:#546e7a,stroke-dasharray: 5 5
 
-    subgraph "☁️ Cloud Infrastructure"
+    subgraph "Cloud Infrastructure"
         style CloudInfrastructure fill:#f8f9fa,stroke:#b0bec5,stroke-width:2px
-        LB["🌐 Load Balancer"]:::lb
+        LB["Load Balancer"]:::lb
 
-        subgraph "🚀 Application Services"
+        subgraph "Application Services"
             style ApplicationServices fill:#ffffff,stroke:#90a4ae,stroke-width:1px
-            OTD["📡 Open Transit Data API"]:::app
-            ETA["⏱️ ETA Calculator"]:::app
-            JP["🗺️ Journey Planner"]:::app
-            SA["📊 Schedule Adherence"]:::app
+            OTD["Open Transit Data API"]:::app
+            ETA["ETA Calculator"]:::app
+            JP["Journey Planner"]:::app
+            SA["Schedule Adherence"]:::app
         end
 
-        subgraph "🗄️ Data Layer"
+        subgraph "Data Layer"
             style DataLayer fill:#ffffff,stroke:#90a4ae,stroke-width:1px
-            DB[(🐘 PostgreSQL)]:::db
-            CACHE[(⚡ Redis)]:::cache
-            S3[☁️ Object Storage]:::storage
+            DB[(PostgreSQL)]:::db
+            CACHE[(Redis)]:::cache
+            S3[Object Storage]:::storage
         end
 
-        subgraph "🖥️ Frontend"
+        subgraph "Frontend"
             style Frontend fill:#ffffff,stroke:#90a4ae,stroke-width:1px
-            CDN["🌍 CDN"]:::cdn
-            UI["⚛️ React App"]:::app
+            CDN["CDN"]:::cdn
+            UI["React App"]:::app
         end
     end
 
-    subgraph "🌐 External"
+    subgraph "External"
         style External fill:#fafafa,stroke:#78909c,stroke-width:2px,stroke-dasharray: 5 5
-        DNS["🔍 DNS"]:::external
-        ONDC["🔗 ONDC Network"]:::external
+        DNS["DNS"]:::external
+        ONDC["ONDC Network"]:::external
     end
 
     DNS --> LB
