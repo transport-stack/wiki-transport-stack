@@ -26,11 +26,11 @@ sidebar_label: Platform Overview
 ## System Context
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#fff3e0', 'tertiaryColor': '#e8f5e9', 'fontFamily': 'Inter, sans-serif', 'fontSize': '17px' }}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#fff3e0', 'tertiaryColor': '#e8f5e9', 'fontFamily': 'Inter, sans-serif', 'fontSize': '17px' }, 'flowchart': { 'padding': 24, 'nodeSpacing': 60, 'rankSpacing': 70, 'useMaxWidth': true }}}%%
 graph TB
-    classDef actor fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b,rx:20px,ry:20px
-    classDef module fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:8px,ry:8px
-    classDef external fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#e65100,rx:8px,ry:8px
+    classDef actor fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b,rx:8px,ry:8px
+    classDef module fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:4px,ry:4px
+    classDef external fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#e65100,rx:4px,ry:4px
     classDef data fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#880e4f,shape:cylinder
 
     C["Commuter / End User"]:::actor
@@ -87,15 +87,15 @@ graph TB
 ## Functional Architecture
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#bbdefb', 'primaryTextColor': '#0d47a1', 'primaryBorderColor': '#1976d2', 'lineColor': '#78909c', 'secondaryColor': '#c8e6c9', 'tertiaryColor': '#ffe0b2', 'quaternaryColor': '#e1bee7', 'fontFamily': 'Inter, sans-serif', 'fontSize': '17px' }}}%%
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#bbdefb', 'primaryTextColor': '#0d47a1', 'primaryBorderColor': '#1976d2', 'lineColor': '#78909c', 'secondaryColor': '#c8e6c9', 'tertiaryColor': '#ffe0b2', 'quaternaryColor': '#e1bee7', 'fontFamily': 'Inter, sans-serif', 'fontSize': '17px' }, 'flowchart': { 'padding': 24, 'nodeSpacing': 60, 'rankSpacing': 70, 'useMaxWidth': true }}}%%
 graph LR
-    classDef data fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#0d47a1,rx:8px,ry:8px
-    classDef analytics fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:8px,ry:8px
-    classDef planning fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#e65100,rx:8px,ry:8px
-    classDef commerce fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#4a148c,rx:8px,ry:8px
-    classDef presentation fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#b71c1c,rx:8px,ry:8px
-    classDef collection fill:#f0f4c3,stroke:#827717,stroke-width:2px,color:#33691e,rx:8px,ry:8px
-    classDef external fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#e65100,rx:8px,ry:8px
+    classDef data fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#0d47a1,rx:4px,ry:4px
+    classDef analytics fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:4px,ry:4px
+    classDef planning fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#e65100,rx:4px,ry:4px
+    classDef commerce fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#4a148c,rx:4px,ry:4px
+    classDef presentation fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#b71c1c,rx:4px,ry:4px
+    classDef collection fill:#f0f4c3,stroke:#827717,stroke-width:2px,color:#33691e,rx:4px,ry:4px
+    classDef external fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#e65100,rx:4px,ry:4px
 
     subgraph "Data Layer"
         OTD["Open Transit Data APIs"]:::data
