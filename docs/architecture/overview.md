@@ -1,75 +1,41 @@
----
-title: Platform Architecture Overview
-sidebar_label: Platform Overview
----
-
 # Platform Architecture Overview
 
-**Transport Stack** is a modular, API-first urban mobility platform designed as digital public infrastructure. Any city can fork, customize, and deploy the subset of modules it needs. This page describes the architecture at four levels: **design principles**, **system context**, **functional view**, and **deployment view**.
+Transport Stack is a modular, API-first platform for building digital public infrastructure in urban mobility. This page describes its architecture at multiple levels of detail.
 
----
+## Design Choices
 
-## Design Principles
+The architecture emerged from specific constraints observed across Indian city deployments:
 
-| Principle | Rationale |
-|-----------|-----------|
-| **Modular & Composable** | Services deploy independently. A city can start with ETA and add Journey Planner later. |
-| **City-Parameterized** | One codebase — each city's stops, routes, and schedules live in configuration, not code. Adding a city means adding data, not rewriting logic. |
-| **Open Standards First** | GTFS, GBFS, and ONDC/Beckn protocols ensure interoperability with any third-party system. |
-| **API-First** | Every module exposes a RESTful API. Frontends can be swapped or extended independently. |
-| **Environment-Configured** | API keys, databases, caches, and monitoring are configured via environment variables. The same code runs in dev, staging, and production. |
-| **Multi-Framework Backend** | Modules use the right framework for their complexity: Flask (ETA), Django (Data APIs), FastAPI (Outshedding), Spring Boot (Portal). No single framework mandate. |
-| **Cloud-Native** | Containerized services deploy on any cloud (AWS, Azure, GCP) or on-premise. |
+- **City-parameterized modules** — ETA Calculator, Journey Planner, and Schedule Adherence are structured by city (e.g., `/delhi/`, `/kochi/`). Each city gets its own GTFS feed, route data, and stops, but the same code serves them all. Adding a new city means adding data, not rewriting logic.
+- **Environment-configured deployments** — API keys, database connections, cache endpoints, and monitoring (Elastic APM) are configured via environment variables and `.env` files, not hardcoded. The same code runs in dev and production.
+- **Multi-framework backend** — different modules use different Python frameworks (Flask for ETA, Django for Open Transit Data APIs and Urban Transit Facilities, FastAPI for Auto Outshedding) based on each module's complexity and needs. A Spring Boot backend exists for the web portal layer. There is no single framework mandate.
+- **Separated frontend and backend** — the Web Portal is a standalone React frontend consuming a separate Spring Boot backend, rather than server-rendered templates. This allows the frontend to be swapped or extended independently.
+- **Protocol-based commerce layer** — ONDC Seller and Buyer modules use Beckn protocol for network-level interoperability rather than point-to-point API integrations. This is the only layer that depends on an external protocol standard.
 
----
-
-## System Context
-
-The platform serves four primary actor groups. Transit operators feed data through Open Transit Data APIs to consumer modules and end-user applications.
+## System Actors
 
 ```mermaid
-graph TB
-    subgraph Actors
-        C[Commuter / End User]
-        PTO[Transit Operator]
-        ADMIN[City Admin]
-        DEV[Developer / Partner]
+graph TD
+    subgraph "Actors"
+        Commuter["Commuter / End User"]
+        PTO["Public Transport Operator"]
+        Admin["City Admin"]
+        Developer["Developer / Partner"]
     end
 
-    subgraph "Transport Stack Platform"
-        OTD[Open Transit Data APIs]
-        ETA[ETA Calculator]
-        JP[Journey Planner]
-        SA[Schedule Adherence]
-        BUN[Bunching Detection]
-        AOS[Auto Outshedding]
-        PR[Park & Ride]
-        ONDC_S[ONDC Bus Seller]
-        ONDC_M[ONDC Micro-Mobility]
-        PORTAL[Web Portal]
-        COLLECT[Data Collection App]
+    subgraph "Transport Stack"
+        APIGateway["API Gateway"]
+        DataLayer["Data Layer"]
+        AnalyticsLayer["Analytics Layer"]
+        PlanningLayer["Planning Layer"]
+        CommerceLayer["Commerce Layer"]
+        Presentation["Presentation Layer"]
     end
 
-    subgraph External
-        ONDC_NET[ONDC Network]
-    end
-
-    PTO -->|GTFS / GTFS-RT| OTD
-    OTD --> ETA
-    OTD --> JP
-    OTD --> SA
-    OTD --> BUN
-    OTD --> AOS
-    ETA --> JP
-    JP --> PR
-    C --> PORTAL
-    C --> JP
-    C --> ETA
-    DEV -->|builds on| OTD
-    ADMIN -->|manages| PORTAL
-    COLLECT -->|survey data| PORTAL
-    ONDC_S --> ONDC_NET
-    ONDC_M --> ONDC_NET
+    Commuter -->|"uses"| Presentation
+    PTO -->|"publishes"| DataLayer
+    Developer -->|"builds on"| APIGateway
+    Admin -->|"manages"| Presentation
 ```
 
 ### Actor Roles
@@ -77,187 +43,139 @@ graph TB
 | Actor | Role |
 |-------|------|
 | **Commuter / End User** | Uses journey planners, ETA predictions, ticketing apps, and ONDC-enabled mobility services |
-| **Transit Operator** | Publishes GTFS data and GPS feeds; uses analytics for performance monitoring |
-| **City Admin** | Deploys and manages Transport Stack modules; configures city-specific settings |
-| **Developer / Partner** | Builds applications on Open Transit Data APIs; creates ONDC buyer/seller apps |
-
----
+| **Public Transport Operator (PTO)** | Publishes GTFS data, GPS feeds, and schedule information; uses analytics tools for performance monitoring |
+| **City Admin** | Deploys and manages Transport Stack modules, administers the web portal, configures integration |
+| **Developer / Partner** | Builds applications on top of Open Transit Data APIs, creates ONDC buyer/seller apps, extends existing modules |
 
 ## Functional Architecture
-
-Modules are grouped by their primary function. Each layer is independently deployable.
 
 ```mermaid
 graph TD
     subgraph "Data Layer"
-        OTD[Open Transit Data APIs]
-        GTFS[GTFS Ingestion]
+        OTD["Open Transit Data Service APIs"]
+        GTFS["GTFS Data Ingestion"]
     end
 
     subgraph "Analytics Layer"
-        ETA[ETA Calculator]
-        SA[Schedule Adherence]
-        BB[Bunching Detection]
-        AO[Auto Outshedding]
+        ETA["ETA Calculator"]
+        SA["Schedule Adherence"]
+        BB["Bus Bunching Detection"]
+        AO["Auto Outshedding Detection"]
     end
 
     subgraph "Planning Layer"
-        JP[Journey Planner]
-        PNR[Park & Ride]
+        JP["Journey Planner"]
+        PNR["Park-n-Ride Trip Planner"]
     end
 
     subgraph "Commerce Layer"
-        ONDC_S[ONDC Bus Seller]
-        ONDC_B[ONDC Micro-Mobility Buyer]
+        ONDC_S["ONDC Buses Seller"]
+        ONDC_B["ONDC Micro-Mobility Buyer"]
     end
 
     subgraph "Presentation"
-        PORTAL_FE[Web Portal Frontend]
-        PORTAL_BE[Web Portal Backend]
+        Portal_FE["Web Portal Frontend"]
+        Portal_BE["Web Portal Backend"]
     end
 
     subgraph "Data Collection"
-        DC[Data Collection App]
+        DC["Shared Transit Data Collection App"]
     end
 
     GTFS --> OTD
     OTD --> ETA
     OTD --> JP
     OTD --> SA
-    OTD --> BB
-    OTD --> AO
-    ETA --> JP
-    JP --> PORTAL_FE
-    ONDC_S -->|Beckn| ONDC_NET[ONDC Network]
-    ONDC_B --> ONDC_NET
-    DC --> PORTAL_BE
-    PORTAL_BE --> PORTAL_FE
+    OTD --> PNR
+    ETA --> Portal_FE
+    JP --> Portal_FE
+    ONDC_S -->|"Beckn/ONDC"| ONDC_Network["ONDC Network"]
+    DC -->|"survey data"| Portal_BE
+    Portal_BE --> Portal_FE
 ```
 
 ### Module Descriptions
 
 | Module | Layer | Purpose |
 |--------|-------|---------|
-| **Open Transit Data Service APIs** | Data | Central API gateway for transit data (GTFS static + real-time). Backbone for all downstream modules |
-| **ETA Calculator** | Analytics | Real-time bus arrival predictions combining GTFS schedule + GPS positions |
-| **Schedule Adherence** | Analytics | Compares actual vs scheduled times; generates on-time performance metrics |
+| **Open Transit Data Service APIs** | Data | Central API gateway for transit data (GTFS static + RT). Serves as the backbone for all downstream modules |
+| **ETA Calculator** | Analytics | Real-time bus arrival predictions using GTFS schedule + GPS position |
+| **Schedule Adherence** | Analytics | Compares actual vs scheduled arrival times; generates on-time performance metrics |
 | **Bus Bunching Detection** | Analytics | Detects when buses on the same route run too close together |
-| **Auto Outshedding Detection** | Analytics | Tracks depot exit/entry times and distance traveled for fleet management |
-| **Journey Planner** | Planning | Multi-modal trip planning (bus, metro, first/last mile) |
-| **Park-n-Ride Trip Planner** | Planning | Trip planning integrating private vehicle + public transit |
-| **ONDC Buses Seller** | Commerce | Bus ticketing seller backend integrated with the ONDC network |
-| **ONDC Micro-Mobility Buyer** | Commerce | Buyer app for shared mobility services (bikes, autos, e-rickshaws) via ONDC |
+| **Auto Outshedding Detection** | Analytics | Monitors bus depot exit/entry times; calculates distance traveled |
+| **Journey Planner** | Planning | Multi-modal trip planning across available transit modes |
+| **Park-n-Ride Trip Planner** | Planning | Trip planning with park-n-ride integration |
+| **ONDC Buses Seller** | Commerce | Bus ticketing seller backend integrated with ONDC network |
+| **ONDC Micro-Mobility Buyer** | Commerce | Buyer app for shared micro-mobility services on ONDC |
 | **Web Portal Frontend** | Presentation | React-based web interface for Transport Stack |
 | **Web Portal Backend** | Presentation | Spring Boot backend providing portal APIs |
-| **Data Collection App** | Data Collection | Android app for field data collection (stops, routes, station surveys) |
-| **Urban Transit Facilities** | Management | Django web app for managing urban transit facilities and operational data |
+| **Shared Transit Data Collection** | Data Collection | Android app for field data collection (metro stations, stops, routes) |
+| **Urban Transit Facilities** | Management | Django-based web application for managing urban transit facilities and data |
 
----
-
-## Data Flow Between Modules
+## Modular Architecture: Data Flow
 
 ```mermaid
 sequenceDiagram
-    participant PTO as Transit Operator
-    participant OTD as Open Transit Data
+    actor PTO as PTO
+    participant GTFS as GTFS Feed
+    participant OTD as Open Transit Data APIs
     participant ETA as ETA Calculator
     participant JP as Journey Planner
-    participant C as Commuter
+    participant USER as Commuter
 
-    PTO->>OTD: Publishes GTFS + GTFS-RT
-    OTD->>ETA: Routes, schedules, vehicle positions
-    OTD->>JP: Routes, schedules, stops
-    ETA->>JP: Real-time arrival estimates
-    JP->>C: Optimal route options
-    C->>JP: Origin → destination request
+    PTO->>GTFS: Publish schedule + real-time data
+    GTFS->>OTD: Ingest and store
+    USER->>JP: Request trip
+    JP->>OTD: Fetch routes + schedules
+    OTD-->>JP: Transit data
+    JP-->>USER: Trip options
+    USER->>ETA: Request arrival time
+    ETA->>OTD: Fetch GTFS + GPS
+    OTD-->>ETA: Vehicle positions
+    ETA-->>USER: Predicted arrival
 ```
 
-### Module Interconnection Summary
+## Deployment View
+
+```mermaid
+graph LR
+    subgraph "Cloud Infrastructure"
+        LB["Load Balancer / API Gateway"]
+        APP["Application Services"]
+        DB["Databases"]
+        CACHE["Redis Cache"]
+        S3["Object Storage (S3)"]
+    end
+
+    subgraph "External"
+        DNS["DNS"]
+        ONDC["ONDC Network"]
+        CDN["CDN"]
+    end
+
+    DNS --> LB
+    LB --> APP
+    APP --> DB
+    APP --> CACHE
+    APP --> S3
+    APP --> ONDC
+    CDN -->|"static assets"| LB
+```
+
+- All services are designed for cloud deployment (AWS, Azure, or GCP)
+- Each module can be deployed independently as a containerized service
+- Redis is used for caching frequently accessed transit data
+- GTFS data and static assets are stored in S3-compatible object storage
+- API Gateway provides a single entry point for all client-facing services
+
+## Modules Interconnection Summary
 
 | Source Module | Consumes From | Protocol |
 |--------------|---------------|----------|
 | ETA Calculator | Open Transit Data APIs | REST / JSON |
 | Journey Planner | Open Transit Data APIs | REST / JSON |
 | Schedule Adherence | Open Transit Data APIs | REST / JSON |
-| Park & Ride Planner | Open Transit Data APIs | REST / JSON |
+| Park-n-Ride Planner | Open Transit Data APIs | REST / JSON |
 | Web Portal Backend | All service modules | REST / JSON |
 | ONDC Seller | PTO inventory + ONDC | Beckn protocol |
 | ONDC Buyer | ONDC network | Beckn protocol |
-
----
-
-## Deployment View
-
-Each module is containerized and deployable independently. The platform follows a cloud-native architecture.
-
-| Component | Technology | Scalability |
-|-----------|-----------|-------------|
-| API Gateway | nginx / cloud LB | Horizontally scalable |
-| Open Transit Data APIs | Python (Django) + Gunicorn | Per-service |
-| ETA Calculator | Python (Flask) | Per-service |
-| Journey Planner | Python (Django) | Per-service |
-| Web Portal Frontend | React, served via nginx | CDN + horizontal |
-| Web Portal Backend | Java (Spring Boot) | Per-service |
-| Databases | PostgreSQL, SQLite | Read replicas |
-| Cache | Redis | In-memory cluster |
-| Message Broker | Redis / Celery | Async workers |
-| CI/CD | GitHub Actions | Free for OSS |
-| Object Storage | AWS S3 (or compatible) | Unlimited |
-
-```mermaid
-graph TB
-    subgraph "Cloud Infrastructure"
-        LB[Load Balancer]
-        subgraph "Application Services"
-            OTD[Open Transit Data API]
-            ETA[ETA Calculator]
-            JP[Journey Planner]
-            SA[Schedule Adherence]
-        end
-        subgraph "Data Layer"
-            DB[(PostgreSQL)]
-            CACHE[(Redis)]
-            S3[Object Storage]
-        end
-        subgraph "Frontend"
-            CDN[CDN]
-            UI[React App]
-        end
-    end
-    subgraph External
-        DNS[DNS]
-        ONDC[ONDC Network]
-    end
-
-    DNS --> LB
-    LB --> OTD
-    LB --> ETA
-    LB --> JP
-    OTD --> DB
-    OTD --> CACHE
-    OTD --> S3
-    ETA --> CACHE
-    CDN --> UI
-    OTD --> ONDC
-```
-
----
-
-## Repository Map
-
-| Repository | Module | Language | Framework |
-|-----------|--------|----------|-----------|
-| `open-transit-data-service-apis` | Open Transit Data APIs | Python | Django + DRF |
-| `eta-calculator` | ETA Calculator | Python | Flask |
-| `journey-planner` | Journey Planner | Python | Django |
-| `schedule-adherence` | Schedule Adherence | Python | — |
-| `bus-bunching-detection` | Bus Bunching Detection | Python | — |
-| `buses-auto-outshedding` | Auto Outshedding | Python | FastAPI |
-| `park-n-ride-trip-planner` | Park & Ride Trip Planner | Python | Django |
-| `ondc-buses-seller` | ONDC Bus Ticketing Seller | Python | Django |
-| `ondc-micro-mobility-buyer` | ONDC Micro-Mobility Buyer | Python | Django |
-| `transport-stack-web-portal-backend` | Web Portal Backend | Java | Spring Boot |
-| `transport-stack-web-portal-frontend` | Web Portal Frontend | JavaScript | React |
-| `urban-transit-facilities` | Urban Transit Facilities | JavaScript | Node.js / Django |
-| `shared-transit-data-collection-app` | Data Collection App | Java | Android |
-| `wiki-transport-stack` | Documentation Wiki | JavaScript | Docusaurus |
