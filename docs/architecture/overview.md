@@ -25,36 +25,37 @@ sidebar_label: Platform Overview
 
 ## System Context
 
-The platform serves four primary actor groups. Transit operators feed data through Open Transit Data APIs to consumer modules and end-user applications.
-
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#fff3e0', 'tertiaryColor': '#e8f5e9', 'fontFamily': 'Inter, sans-serif', 'fontSize': '14px' }}}%%
 graph TB
-    subgraph Actors
-        C[Commuter / End User]
-        PTO[Transit Operator]
-        ADMIN[City Admin]
-        DEV[Developer / Partner]
+    classDef actor fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b,rx:20px,ry:20px
+    classDef module fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:8px,ry:8px
+    classDef external fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#e65100,rx:8px,ry:8px
+    classDef data fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#880e4f,shape:cylinder
+
+    C["👤 Commuter / End User"]:::actor
+    PTO["🏢 Transit Operator"]:::actor
+    ADMIN["⚙️ City Admin"]:::actor
+    DEV["💻 Developer / Partner"]:::actor
+
+    subgraph "Transport Stack"
+        style Transport Stack fill:#f8f9fa,stroke:#78909c,stroke-width:2px,stroke-dasharray: 5 5
+        OTD["📡 Open Transit Data APIs"]:::data
+        ETA["⏱️ ETA Calculator"]:::module
+        JP["🗺️ Journey Planner"]:::module
+        SA["📊 Schedule Adherence"]:::module
+        BUN["🚌 Bunching Detection"]:::module
+        AOS["🏭 Auto Outshedding"]:::module
+        PR["🅿️ Park & Ride"]:::module
+        ONDC_S["🎫 ONDC Bus Seller"]:::module
+        ONDC_M["🚲 ONDC Micro-Mobility"]:::module
+        PORTAL["🌐 Web Portal"]:::module
+        COLLECT["📱 Data Collection App"]:::module
     end
 
-    subgraph "Transport Stack Platform"
-        OTD[Open Transit Data APIs]
-        ETA[ETA Calculator]
-        JP[Journey Planner]
-        SA[Schedule Adherence]
-        BUN[Bunching Detection]
-        AOS[Auto Outshedding]
-        PR[Park & Ride]
-        ONDC_S[ONDC Bus Seller]
-        ONDC_M[ONDC Micro-Mobility]
-        PORTAL[Web Portal]
-        COLLECT[Data Collection App]
-    end
+    ONDC_NET["🔗 ONDC Network"]:::external
 
-    subgraph External
-        ONDC_NET[ONDC Network]
-    end
-
-    PTO -->|GTFS / GTFS-RT| OTD
+    PTO --"GTFS / GTFS-RT"--> OTD
     OTD --> ETA
     OTD --> JP
     OTD --> SA
@@ -65,9 +66,9 @@ graph TB
     C --> PORTAL
     C --> JP
     C --> ETA
-    DEV -->|builds on| OTD
-    ADMIN -->|manages| PORTAL
-    COLLECT -->|survey data| PORTAL
+    DEV --"builds on"--> OTD
+    ADMIN --"manages"--> PORTAL
+    COLLECT --"survey data"--> PORTAL
     ONDC_S --> ONDC_NET
     ONDC_M --> ONDC_NET
 ```
@@ -85,40 +86,49 @@ graph TB
 
 ## Functional Architecture
 
-Modules are grouped by their primary function. Each layer is independently deployable.
-
 ```mermaid
-graph TD
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#bbdefb', 'primaryTextColor': '#0d47a1', 'primaryBorderColor': '#1976d2', 'lineColor': '#78909c', 'secondaryColor': '#c8e6c9', 'tertiaryColor': '#ffe0b2', 'quaternaryColor': '#e1bee7', 'fontFamily': 'Inter, sans-serif', 'fontSize': '13px' }}}%%
+graph LR
+    classDef data fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#0d47a1,rx:8px,ry:8px
+    classDef analytics fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,rx:8px,ry:8px
+    classDef planning fill:#ffe0b2,stroke:#ef6c00,stroke-width:2px,color:#e65100,rx:8px,ry:8px
+    classDef commerce fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#4a148c,rx:8px,ry:8px
+    classDef presentation fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#b71c1c,rx:8px,ry:8px
+    classDef collection fill:#f0f4c3,stroke:#827717,stroke-width:2px,color:#33691e,rx:8px,ry:8px
+    classDef external fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#e65100,rx:8px,ry:8px
+
     subgraph "Data Layer"
-        OTD[Open Transit Data APIs]
-        GTFS[GTFS Ingestion]
+        OTD["📡 Open Transit Data APIs"]:::data
+        GTFS["📥 GTFS Ingestion"]:::data
     end
 
     subgraph "Analytics Layer"
-        ETA[ETA Calculator]
-        SA[Schedule Adherence]
-        BB[Bunching Detection]
-        AO[Auto Outshedding]
+        ETA["⏱️ ETA Calculator"]:::analytics
+        SA["📊 Schedule Adherence"]:::analytics
+        BB["🚌 Bunching Detection"]:::analytics
+        AO["🏭 Auto Outshedding"]:::analytics
     end
 
     subgraph "Planning Layer"
-        JP[Journey Planner]
-        PNR[Park & Ride]
+        JP["🗺️ Journey Planner"]:::planning
+        PNR["🅿️ Park & Ride"]:::planning
     end
 
     subgraph "Commerce Layer"
-        ONDC_S[ONDC Bus Seller]
-        ONDC_B[ONDC Micro-Mobility Buyer]
+        ONDC_S["🎫 ONDC Bus Seller"]:::commerce
+        ONDC_B["🚲 ONDC Micro-Mobility"]:::commerce
     end
 
-    subgraph "Presentation"
-        PORTAL_FE[Web Portal Frontend]
-        PORTAL_BE[Web Portal Backend]
+    subgraph "Presentation Layer"
+        PORTAL_FE["🌐 Web Portal Frontend"]:::presentation
+        PORTAL_BE["🔌 Web Portal Backend"]:::presentation
     end
 
     subgraph "Data Collection"
-        DC[Data Collection App]
+        DC["📱 Data Collection App"]:::collection
     end
+
+    ONDC_NET["🔗 ONDC Network"]:::external
 
     GTFS --> OTD
     OTD --> ETA
@@ -128,7 +138,7 @@ graph TD
     OTD --> AO
     ETA --> JP
     JP --> PORTAL_FE
-    ONDC_S -->|Beckn| ONDC_NET[ONDC Network]
+    ONDC_S --> ONDC_NET
     ONDC_B --> ONDC_NET
     DC --> PORTAL_BE
     PORTAL_BE --> PORTAL_FE
@@ -157,19 +167,36 @@ graph TD
 ## Data Flow Between Modules
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'primaryTextColor': '#01579b', 'primaryBorderColor': '#0288d1', 'lineColor': '#546e7a', 'secondaryColor': '#e8f5e9', 'tertiaryColor': '#fff3e0', 'fontFamily': 'Inter, sans-serif', 'fontSize': '14px' }}}%%
 sequenceDiagram
-    participant PTO as Transit Operator
-    participant OTD as Open Transit Data
-    participant ETA as ETA Calculator
-    participant JP as Journey Planner
-    participant C as Commuter
+    autonumber
+    actor PTO as 🏢 Transit Operator
+    participant OTD as 📡 Open Transit Data
+    participant ETA as ⏱️ ETA Calculator
+    participant JP as 🗺️ Journey Planner
+    actor C as 👤 Commuter
 
-    PTO->>OTD: Publishes GTFS + GTFS-RT
-    OTD->>ETA: Routes, schedules, vehicle positions
-    OTD->>JP: Routes, schedules, stops
-    ETA->>JP: Real-time arrival estimates
-    JP->>C: Optimal route options
-    C->>JP: Origin → destination request
+    rect rgb(225, 245, 254)
+        Note over PTO,OTD: Data Ingestion Phase
+        PTO->>OTD: Publishes GTFS + GTFS-RT feeds
+    end
+
+    rect rgb(232, 245, 233)
+        Note over C,JP: Planning Phase
+        C->>JP: Request trip (origin → destination)
+        JP->>OTD: Fetch routes + schedules
+        OTD-->>JP: Return transit data
+    end
+
+    rect rgb(255, 243, 224)
+        Note over C,ETA: Real-time Phase
+        JP->>ETA: Request arrival estimates for route
+        ETA->>OTD: Fetch vehicle positions
+        OTD-->>ETA: Return GTFS + GPS data
+        ETA-->>JP: Return predicted ETAs
+    end
+
+    JP-->>C: Return optimal route with ETAs
 ```
 
 ### Module Interconnection Summary
@@ -188,7 +215,62 @@ sequenceDiagram
 
 ## Deployment View
 
-Each module is containerized and deployable independently. The platform follows a cloud-native architecture.
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f5e9', 'primaryTextColor': '#1b5e20', 'primaryBorderColor': '#2e7d32', 'lineColor': '#78909c', 'secondaryColor': '#e1f5fe', 'tertiaryColor': '#fff3e0', 'fontFamily': 'Inter, sans-serif', 'fontSize': '13px' }}}%%
+graph TB
+    classDef lb fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,color:#e65100,rx:20px,ry:20px
+    classDef app fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#01579b,rx:8px,ry:8px
+    classDef db fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#880e4f,shape:cylinder
+    classDef cache fill:#fff9c4,stroke:#f9a825,stroke-width:2px,color:#f57f17,shape:cylinder
+    classDef storage fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,shape:cloud
+    classDef cdn fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#4a148c
+    classDef external fill:#fafafa,stroke:#78909c,stroke-width:2px,color:#546e7a,stroke-dasharray: 5 5
+
+    subgraph "☁️ Cloud Infrastructure"
+        style CloudInfrastructure fill:#f8f9fa,stroke:#b0bec5,stroke-width:2px
+        LB["🌐 Load Balancer"]:::lb
+
+        subgraph "🚀 Application Services"
+            style ApplicationServices fill:#ffffff,stroke:#90a4ae,stroke-width:1px
+            OTD["📡 Open Transit Data API"]:::app
+            ETA["⏱️ ETA Calculator"]:::app
+            JP["🗺️ Journey Planner"]:::app
+            SA["📊 Schedule Adherence"]:::app
+        end
+
+        subgraph "🗄️ Data Layer"
+            style DataLayer fill:#ffffff,stroke:#90a4ae,stroke-width:1px
+            DB[(🐘 PostgreSQL)]:::db
+            CACHE[(⚡ Redis)]:::cache
+            S3[☁️ Object Storage]:::storage
+        end
+
+        subgraph "🖥️ Frontend"
+            style Frontend fill:#ffffff,stroke:#90a4ae,stroke-width:1px
+            CDN["🌍 CDN"]:::cdn
+            UI["⚛️ React App"]:::app
+        end
+    end
+
+    subgraph "🌐 External"
+        style External fill:#fafafa,stroke:#78909c,stroke-width:2px,stroke-dasharray: 5 5
+        DNS["🔍 DNS"]:::external
+        ONDC["🔗 ONDC Network"]:::external
+    end
+
+    DNS --> LB
+    LB --> OTD
+    LB --> ETA
+    LB --> JP
+    OTD --> DB
+    OTD --> CACHE
+    OTD --> S3
+    ETA --> CACHE
+    CDN --> UI
+    OTD --> ONDC
+```
+
+### Deployment Topology
 
 | Component | Technology | Scalability |
 |-----------|-----------|-------------|
@@ -203,43 +285,6 @@ Each module is containerized and deployable independently. The platform follows 
 | Message Broker | Redis / Celery | Async workers |
 | CI/CD | GitHub Actions | Free for OSS |
 | Object Storage | AWS S3 (or compatible) | Unlimited |
-
-```mermaid
-graph TB
-    subgraph "Cloud Infrastructure"
-        LB[Load Balancer]
-        subgraph "Application Services"
-            OTD[Open Transit Data API]
-            ETA[ETA Calculator]
-            JP[Journey Planner]
-            SA[Schedule Adherence]
-        end
-        subgraph "Data Layer"
-            DB[(PostgreSQL)]
-            CACHE[(Redis)]
-            S3[Object Storage]
-        end
-        subgraph "Frontend"
-            CDN[CDN]
-            UI[React App]
-        end
-    end
-    subgraph External
-        DNS[DNS]
-        ONDC[ONDC Network]
-    end
-
-    DNS --> LB
-    LB --> OTD
-    LB --> ETA
-    LB --> JP
-    OTD --> DB
-    OTD --> CACHE
-    OTD --> S3
-    ETA --> CACHE
-    CDN --> UI
-    OTD --> ONDC
-```
 
 ---
 
