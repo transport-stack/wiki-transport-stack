@@ -17,7 +17,7 @@ How Transport Stack's documentation compares with reference open-source platform
 | Platform architecture diagrams | ✅ | ✅ | 🔶 | ✅ [overview](/docs/architecture/overview) | — |
 | Consolidated tech stack reference | ✅ | 🔶 | ⬜ | ✅ [tech stack](/docs/architecture/tech-stack) | — |
 | Security & privacy architecture page | ✅ (published Privacy & Security hub) | ⬜ | ⬜ | ✅ [security-privacy](/docs/architecture/security-privacy) | Aug 2026 |
-| Per-module UI/UX specs (flows + screens + JSON) | ✅ (mosip module pages) | 🔶 | ⬜ | 🔶 [ui-specs](/docs/category/module-uiux-specs/) — flagship Web Portal complete; ETA + JP in progress | Sep 2026 |
+| Per-module UI/UX specs (flows + screens + JSON) | ✅ (mosip module pages) | 🔶 | ⬜ | 🔶 [ui-specs](/docs/ui-specs/web-portal) — flagship Web Portal complete; ETA + JP in progress | Sep 2026 |
 | Public sandbox (fake data) | ✅ | 🔶 (hosted demo) | 🔶 | ⬜ planned 2026 | Q3 2026 |
 | Version-tagged doc releases | ✅ | ✅ | ⬜ | ✅ v1.0 scheme (Aug 2026) | quarterly |
 | Contributor onboarding docs | ✅ | ✅ | ✅ | ✅ (CONTRIBUTING.md + wiki) | — |
