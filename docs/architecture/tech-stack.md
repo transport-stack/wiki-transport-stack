@@ -143,3 +143,8 @@ Every tool and framework used across the Transport Stack ecosystem, organized by
 | `urban-transit-facilities` | Python 3.10 + JS | Django + Celery 5.3.4 | PostgreSQL | Redis | Gunicorn 20.1.0 |
 | `shared-transit-data-collection-app` | Java | Android / Gradle | SQLite | — | — |
 | `wiki-transport-stack` | JavaScript | Docusaurus 3.7.0 | — | — | — |
+
+
+---
+
+*Doc v1.0 · Updated Aug 2026 · Part of the Transport Stack documentation v1.0 release*

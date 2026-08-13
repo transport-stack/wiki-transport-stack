@@ -72,6 +72,7 @@ const sidebars = {
         { type: 'doc', id: 'architecture/overview', label: 'Platform Overview' },
         { type: 'doc', id: 'architecture/tech-stack', label: 'Technology Stack' },
         { type: 'doc', id: 'architecture/security-privacy', label: 'Security & Privacy' },
+        { type: 'doc', id: 'architecture/benchmarks', label: 'Maturity Benchmarks' },
       ],
       collapsed: false,
     },

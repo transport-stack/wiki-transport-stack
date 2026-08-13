@@ -306,3 +306,8 @@ graph TB
 | `urban-transit-facilities` | Urban Transit Facilities | JavaScript | Node.js / Django |
 | `shared-transit-data-collection-app` | Data Collection App | Java | Android |
 | `wiki-transport-stack` | Documentation Wiki | JavaScript | Docusaurus |
+
+
+---
+
+*Doc v1.0 · Updated Aug 2026 · Part of the Transport Stack documentation v1.0 release*
