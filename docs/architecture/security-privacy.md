@@ -5,7 +5,7 @@ sidebar_label: Security & Privacy
 
 # Security & Privacy Architecture
 
-How Transport Stack approaches security, privacy, and secrets management — its governing principles, what's enforced today, and where the model is headed. Inspired by MOSIP's published Privacy & Security architecture for public digital infrastructure.
+How Transport Stack approaches security, privacy, and secrets management — its governing principles, what's enforced today, and where the model is headed.
 
 :::info Status
 This is a v1.0 statement of direction. Where a control is described as **planned**, it has an intake item in the custodianship roadmap; see the [Technology Stack](/docs/architecture/tech-stack) page for the underlying tools.
