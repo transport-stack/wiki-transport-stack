@@ -75,6 +75,14 @@ const sidebars = {
       ],
       collapsed: false,
     },
+    {
+      type: 'category',
+      label: 'Module UI/UX Specs',
+      items: [
+        { type: 'doc', id: 'ui-specs/web-portal', label: 'Web Portal (reference)' },
+      ],
+      collapsed: false,
+    },
   ],
 
   // New sidebar configuration
