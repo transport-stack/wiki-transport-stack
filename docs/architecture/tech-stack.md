@@ -18,8 +18,7 @@ Every tool and framework used across the Transport Stack ecosystem, organized by
 | Language | Version | Used By |
 |----------|---------|---------|
 | Python | 3.7+ | ETA Calculator, Schedule Adherence, Bus Bunching, Auto Outshedding |
-| Python | 3.10+ | Journey Planner, Open Transit Data APIs, ONDC Seller/Buyer, Urban Transit Facilities |
-| Java | 17+ | Web Portal Backend |
+| Python | 3.10+ | Journey Planner, Open Transit Data APIs, ONDC Seller/Buyer, Urban Transit Facilities, Web Portal Backend |
 | Java | — | Data Collection App (Android) |
 | Node.js | 20 LTS | Web Portal Frontend, Wiki |
 
@@ -32,7 +31,7 @@ Every tool and framework used across the Transport Stack ecosystem, organized by
 | Flask | 2.3.2 | Python | ETA Calculator | BSD-3 | ✅ |
 | Flask | 2.2.2 | Python | Park-n-Ride Trip Planner | BSD-3 | ✅ |
 | FastAPI | — | Python | Auto Outshedding | Apache 2.0 | ✅ |
-| Spring Boot | 3.3.1 | Java | Web Portal Backend | Apache 2.0 | ✅ |
+| Django | 4.1.7 | Python | Web Portal Backend (TransOps Dashboard API) | BSD-3 | ✅ |
 | Django REST Framework | 3.14.0–3.15.2 | Python | Open Transit Data APIs, Urban Transit Facilities | BSD-3 | ✅ |
 | Celery | 5.3.1–5.3.4 | Python | ONDC Buyer, Urban Transit Facilities, ONDC Buses Seller | BSD-3 | ✅ |
 | Uvicorn | — | Python | Auto Outshedding | BSD-3 | ✅ |
@@ -121,7 +120,7 @@ Every tool and framework used across the Transport Stack ecosystem, organized by
 | pip | Python | All Python repos (requirements.txt) |
 | Poetry | Python | Journey Planner |
 | npm | JavaScript | Web Portal Frontend, Wiki |
-| Gradle | Java / Android | Web Portal Backend, Data Collection App |
+| Gradle | Java / Android | Data Collection App |
 
 ---
 
@@ -138,7 +137,7 @@ Every tool and framework used across the Transport Stack ecosystem, organized by
 | `park-n-ride-trip-planner` | Python 3.7+ | Flask 2.2.2 | — | — | — |
 | `ondc-buses-seller` | Python 3.10 | Django 3.x | PostgreSQL | Redis 5.0.1 | Gunicorn 23.0.0 |
 | `ondc-micro-mobility-buyer` | Python 3.10 | Django 3.x | PostgreSQL | Redis | Gunicorn 22.0.0 |
-| `transport-stack-web-portal-backend` | Java 17+ | Spring Boot 3.3.1 | PostgreSQL | — | — |
+| `dashboard-api` (Web Portal Backend) | Python 3.10 | Django 4.1.7 + DRF 3.14 | PostgreSQL | Elasticsearch | Gunicorn |
 | `transport-stack-web-portal-frontend` | JavaScript | React 18.3.1 | — | — | — |
 | `urban-transit-facilities` | Python 3.10 + JS | Django + Celery 5.3.4 | PostgreSQL | Redis | Gunicorn 20.1.0 |
 | `shared-transit-data-collection-app` | Java | Android / Gradle | SQLite | — | — |

@@ -18,7 +18,7 @@ sidebar_label: Platform Overview
 | **Open Standards First** | GTFS, GBFS, and ONDC/Beckn protocols ensure interoperability with any third-party system. |
 | **API-First** | Every module exposes a RESTful API. Frontends can be swapped or extended independently. |
 | **Environment-Configured** | API keys, databases, caches, and monitoring are configured via environment variables. The same code runs in dev, staging, and production. |
-| **Multi-Framework Backend** | Modules use the right framework for their complexity: Flask (ETA), Django (Data APIs), FastAPI (Outshedding), Spring Boot (Portal). No single framework mandate. |
+| **Multi-Framework Backend** | Modules use the right framework for their complexity: Flask (ETA), Django (Data APIs, Web Portal), FastAPI (Outshedding). No single framework mandate. |
 | **Cloud-Native** | Containerized services deploy on any cloud (AWS, Azure, GCP) or on-premise. |
 
 ---
@@ -158,7 +158,7 @@ graph LR
 | **ONDC Buses Seller** | Commerce | Bus ticketing seller backend integrated with the ONDC network |
 | **ONDC Micro-Mobility Buyer** | Commerce | Buyer app for shared mobility services (bikes, autos, e-rickshaws) via ONDC |
 | **Web Portal Frontend** | Presentation | React-based web interface for Transport Stack |
-| **Web Portal Backend** | Presentation | Spring Boot backend providing portal APIs |
+| **Web Portal Backend** | Presentation | Django backend providing portal APIs (deployed as `ts-web-dashboard-api`) |
 | **Data Collection App** | Data Collection | Android app for field data collection (stops, routes, station surveys) |
 | **Urban Transit Facilities** | Management | Django web app for managing urban transit facilities and operational data |
 
@@ -279,7 +279,7 @@ graph TB
 | ETA Calculator | Python (Flask) | Per-service |
 | Journey Planner | Python (Django) | Per-service |
 | Web Portal Frontend | React, served via nginx | CDN + horizontal |
-| Web Portal Backend | Java (Spring Boot) | Per-service |
+| Web Portal Backend | Python (Django) | Per-service |
 | Databases | PostgreSQL, SQLite | Read replicas |
 | Cache | Redis | In-memory cluster |
 | Message Broker | Redis / Celery | Async workers |
@@ -301,7 +301,7 @@ graph TB
 | `park-n-ride-trip-planner` | Park & Ride Trip Planner | Python | Django |
 | `ondc-buses-seller` | ONDC Bus Ticketing Seller | Python | Django |
 | `ondc-micro-mobility-buyer` | ONDC Micro-Mobility Buyer | Python | Django |
-| `transport-stack-web-portal-backend` | Web Portal Backend | Java | Spring Boot |
+| `dashboard-api` | Web Portal Backend (TransOps Dashboard API) | Python | Django |
 | `transport-stack-web-portal-frontend` | Web Portal Frontend | JavaScript | React |
 | `urban-transit-facilities` | Urban Transit Facilities | JavaScript | Node.js / Django |
 | `shared-transit-data-collection-app` | Data Collection App | Java | Android |
