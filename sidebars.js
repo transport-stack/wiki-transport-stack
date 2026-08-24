@@ -75,6 +75,15 @@ const sidebars = {
       ],
       collapsed: false,
     },
+    {
+      type: 'category',
+      label: 'Module UI/UX Specs',
+      items: [
+        { type: 'doc', id: 'ui-specs/eta-calculator', label: 'ETA Calculator (PIS)' },
+        { type: 'doc', id: 'ui-specs/journey-planner', label: 'Journey Planner' },
+      ],
+      collapsed: false,
+    },
   ],
 
   // New sidebar configuration
