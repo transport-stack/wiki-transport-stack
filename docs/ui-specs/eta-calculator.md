@@ -46,15 +46,18 @@ The autocomplete fetches stop suggestions as the user types, allowing quick navi
 
 ### 2.2 Stop Arrival Board (PIS Page)
 
-**Route:** `/delhi/<stop-name-slug>`
+**Route:** `/delhi/<stop-name-slug>` · `/get_buses_arriving_at_stop?stopid=<stop-id>`
 
 Displays real-time bus arrivals at a specific stop. The page shows:
 
-- **Stop name** at the top
+- **Stop name** at the top (e.g., "ITO Ring Road")
 - **List of upcoming buses** with route names, destination, and estimated time of arrival (ETA)
+- **Highlighted card** showing the stop name and current time
 - **Auto-refresh** to keep the data current
 
-Each bus entry includes the route number (e.g., "723"), destination, and minutes until arrival.
+![PIS Stop Arrival Board](/img/pis-stop-arrival.png)
+
+Each bus entry includes the route number (e.g., "522CL"), destination, and minutes until arrival. An orange banner may indicate the data source status (e.g., "Currently showing cluster buses only. More buses coming soon!").
 
 ### 2.3 All Stops List
 
