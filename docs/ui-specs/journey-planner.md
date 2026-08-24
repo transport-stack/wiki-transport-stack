@@ -54,6 +54,8 @@ The planner itself exposes only JSON APIs and an auto-generated Swagger document
 
 Auto-generated Swagger UI is available at `/schema/` for API exploration and client code generation.
 
+![Journey Planner Swagger UI](/img/jp-swagger.png)
+
 ---
 
 ## 4. Request Parameters
