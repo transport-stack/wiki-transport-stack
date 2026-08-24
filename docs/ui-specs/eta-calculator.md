@@ -40,6 +40,8 @@ A search interface for finding stops by name. The page features:
 - **Autocomplete search input** — users type a stop name and see matching stops as they type
 - **Bootstrap 4 responsive layout** — centered column on desktop, full-width on mobile
 
+![PIS Home Page](/img/pis-home.png)
+
 The autocomplete fetches stop suggestions as the user types, allowing quick navigation to a stop's arrival board.
 
 ### 2.2 Stop Arrival Board (PIS Page)
@@ -186,7 +188,6 @@ sequenceDiagram
 The service supports multiple cities via URL prefixes:
 
 - `/delhi/` — Delhi bus network
-- `/kochi/` — Kochi bus network (planned)
 
 Each city has its own GTFS feed and stop database. The Flask app routes city-specific views and APIs under the prefix.
 
