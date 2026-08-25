@@ -48,6 +48,14 @@ The autocomplete fetches stop suggestions as the user types, allowing quick navi
 
 **Route:** `/delhi/<stop-name-slug>` · `/get_buses_arriving_at_stop?stopid=<stop-id>`
 
+<div className="row" style={{ display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
+	<div style={{ flex: "0 0 260px", maxWidth: 260 }}>
+
+		<img src="/img/pis-stop-arrival.png" alt="PIS Stop Arrival Board" style={{ width: 260, maxHeight: 600, objectFit: "cover", objectPosition: "top" }} loading="lazy" />
+
+	</div>
+	<div style={{ flex: 1, minWidth: 280 }}>
+
 Displays real-time bus arrivals at a specific stop. The page shows:
 
 - **Stop name** at the top (e.g., "ITO Ring Road")
@@ -55,9 +63,10 @@ Displays real-time bus arrivals at a specific stop. The page shows:
 - **Highlighted card** showing the stop name and current time
 - **Auto-refresh** to keep the data current
 
-<img src="/img/pis-stop-arrival.png" alt="PIS Stop Arrival Board" style={{ maxWidth: 320 }} loading="lazy" />
+The arrivals are shown in a table: each row lists the bus route (e.g., "118EXTDOWN"), the destination (e.g., "Mori Gate Terminal"), and the estimated arrival in minutes — color-coded per bus and accompanied by the vehicle ID and last-updated timestamp.
 
-Each bus entry includes the route number (e.g., "522CL"), destination, and minutes until arrival. An orange banner may indicate the data source status (e.g., "Currently showing cluster buses only. More buses coming soon!").
+	</div>
+</div>
 
 ### 2.3 All Stops List
 
