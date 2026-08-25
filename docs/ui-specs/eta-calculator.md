@@ -55,7 +55,7 @@ Displays real-time bus arrivals at a specific stop. The page shows:
 - **Highlighted card** showing the stop name and current time
 - **Auto-refresh** to keep the data current
 
-![PIS Stop Arrival Board](/img/pis-stop-arrival.png)
+<img src="/img/pis-stop-arrival.png" alt="PIS Stop Arrival Board" style={{ maxWidth: 320 }} loading="lazy" />
 
 Each bus entry includes the route number (e.g., "522CL"), destination, and minutes until arrival. An orange banner may indicate the data source status (e.g., "Currently showing cluster buses only. More buses coming soon!").
 
