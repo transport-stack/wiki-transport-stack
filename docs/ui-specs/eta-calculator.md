@@ -24,7 +24,7 @@ The ETA Calculator serves two purposes:
 - **Passenger Information System (PIS)**: A web UI for commuters to check real-time bus arrivals at stops, view bus positions on a map, and browse all available routes.
 - **REST API**: JSON endpoints for third-party apps to query bus ETAs, nearby stops, and route data.
 
-The service is deployed per-city with URL prefixes (e.g., `/delhi/`, `/kochi/`) and uses GTFS-RT feeds for real-time vehicle positions.
+The service is deployed per-city with URL prefixes (e.g., `/delhi/`) and uses GTFS-RT feeds for real-time vehicle positions.
 
 ---
 
@@ -51,7 +51,7 @@ The autocomplete fetches stop suggestions as the user types, allowing quick navi
 <div className="row" style={{ display: "flex", gap: 24, alignItems: "flex-start", flexWrap: "wrap" }}>
 	<div style={{ flex: "0 0 260px", maxWidth: 260 }}>
 
-		<img src="/img/pis-stop-arrival.png" alt="PIS Stop Arrival Board" style={{ width: 260, maxHeight: 600, objectFit: "cover", objectPosition: "top" }} loading="lazy" />
+		<img src="/img/pis-stop-arrival.png" alt="PIS Stop Arrival Board" style={{ width: 260, height: "auto" }} loading="lazy" />
 
 	</div>
 	<div style={{ flex: 1, minWidth: 280 }}>

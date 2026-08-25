@@ -13,7 +13,9 @@ This is a v1.0 statement of direction. Where a control is described as **planned
 
 ---
 
-## Governing Principles
+## Security by Design
+
+### Governing Principles
 
 | # | Principle | What it means for Transport Stack |
 |---|-----------|-----------------------------------|
@@ -24,11 +26,24 @@ This is a v1.0 statement of direction. Where a control is described as **planned
 | 5 | **No secrets in code** | Credentials live in environment variables / `.env` files only; never committed to repositories. |
 | 6 | **Disclosure-ready** | A public `[SECURITY.md](https://github.com/transport-stack/.github)` policy describes how to report vulnerabilities. |
 
----
+### Internal Practices
 
-## 1. Authentication
+Development- and release-time controls, applied uniformly across the org's repos:
 
-### API Key-Based Authentication (Standard)
+| Practice | Tooling | Status |
+|----------|---------|--------|
+| Dependency updates | Dependabot (`pip`/`npm`/`gradle` + `github-actions` ecosystems), weekly, org-wide | ✅ Production |
+| PR / commit hygiene | `danger.yml` + `commit-check.yml` on every PR | ✅ Production |
+| Vulnerability disclosure | Org-level [`SECURITY.md`](https://github.com/transport-stack/.github) | ✅ Production |
+| Static analysis (SAST) | None yet — CodeQL vs. CodeRabbit under evaluation | 🔲 Planned |
+| Dynamic analysis (DAST) | None yet | 🔲 Planned |
+| Release signing | None yet | 🔲 Planned |
+
+### Operational Practices
+
+#### 1. Authentication
+
+##### API Key-Based Authentication (Standard)
 
 Every module that exposes public data APIs expects an **`X-API-KEY`** header. This is the same pattern used uniformly across the platform's Django and Flask services.
 
@@ -45,7 +60,7 @@ Every module that exposes public data APIs expects an **`X-API-KEY`** header. Th
 - Keys are rotated on a schedule and on suspected compromise.
 - Keys transmitted only in the request **header**, never in URLs (avoids leaking keys into logs).
 
-## 2. Authorization (RBAC)
+#### 2. Authorization (RBAC)
 
 Role-based access is enforced in the application tier, not exposed in data APIs:
 
@@ -56,7 +71,7 @@ Role-based access is enforced in the application tier, not exposed in data APIs:
 | **Wiki & docs** | Public read, restricted write | GitHub org roles |
 | **Database** | Service-account users with narrow grants | PostgreSQL |
 
-## 3. Rate Limiting
+#### 3. Rate Limiting
 
 | Policy | Where | Status |
 |--------|-------|--------|
@@ -64,7 +79,7 @@ Role-based access is enforced in the application tier, not exposed in data APIs:
 | Per-key rate caps for integrators | Roadmap — Phase 2B | 🔲 Planned |
 | Public docs/wiki | Served by Docusaurus (static) behind CDN | Production |
 
-## 4. Cryptography
+#### 4. Cryptography
 
 | Layer | Mechanism |
 |-------|-----------|
@@ -72,7 +87,7 @@ Role-based access is enforced in the application tier, not exposed in data APIs:
 | **At rest** | AWS S3 server-side encryption (AES-256) for static data files; PostgreSQL volumes encrypted via AWS EBS/KMS. |
 | **Secrets** | `.env` per service, never committed. Deployment environments (EKS, Docker Compose) inject credentials via managed secrets. |
 
-## 5. Key & Secrets Management
+#### 5. Key & Secrets Management
 
 Current maturity is **Level 1: Manual rotation via environment variables**. The roadmap elevates this:
 
@@ -86,18 +101,23 @@ flowchart LR
 
 > All public repositories must never contain keys. The org-level security policy ([`SECURITY.md`](https://github.com/transport-stack/.github)) defines the disclosure path if one is accidentally committed.
 
-## 6. Privacy Posture
+#### 6. Audit & Observability
+
+- All API requests carry a request ID; keys are logged (hashed) with timestamps for abuse analysis.
+- Custodianship run reports (quarterly) include a security review section covering key issuance, incidents, and disclosures.
+
+---
+
+## Privacy by Intent
+
+Transport Stack's equivalent of minimal-data-collection is structural: it's a **public, non-personal data** platform by design, not one that collects PII and restricts access to it.
 
 | Question | Answer |
 |----------|--------|
 | Does the platform collect personal data? | **No** — all data published (GTFS, schedules, trip counts) is non-personal. |
 | What if PII accidentally lands in a feed? | Curation policy: strip on ingress, with notification to the source PTO. |
 | How is user feedback handled? | Roundtable/contact forms are processed only by named custodians, not logged in platform databases. |
-
-## 7. Audit & Observability
-
-- All API requests carry a request ID; keys are logged (hashed) with timestamps for abuse analysis.
-- Custodianship run reports (quarterly) include a security review section covering key issuance, incidents, and disclosures.
+| Minimal disclosure equivalent | Consumers only ever receive the fields defined in each module's public API contract — no internal/ops fields are exposed. |
 
 ---
 
